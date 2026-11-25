@@ -1,4 +1,24 @@
-# Disaster-response UAV — PyBullet + MAVLink flight-controller simulation
+# UAV — Disaster-response Unmanned Aerial Vehicle (PyBullet + MAVLink flight-controller simulation)
+
+> **Description:** Autonomous disaster-response quadrotor simulated in PyBullet with its own MAVLink 2 flight controller, ROS 2 bridge,
+> RGB-D SLAM (ORB-SLAM3 / VO fallback), YOLO survivor detection and geo-tagging, live mapping, A\* + VFH+ navigation and mission failsafes.
+> No Gazebo, no PX4 SITL.
+
+**Topics:** `uav` · `drone` · `pybullet` · `mavlink` · `ros2` · `slam` · `orb-slam3` · `yolo` · `search-and-rescue` · `autonomous-navigation`
+
+## Recordings
+
+Full autonomous search-and-rescue missions recorded from the simulation (mission video with map / detection overlay).
+
+| Recording | What it shows |
+|---|---|
+| [recordings/mission_static_windows_vo_fallback.mp4](recordings/mission_static_windows_vo_fallback.mp4) | Static earthquake scene, Windows 11, `orb_pnp_vo` SLAM fallback, mission complete (176 s sim time) |
+| [recordings/mission_ubuntu_orbslam3_short.mp4](recordings/mission_ubuntu_orbslam3_short.mp4) | Ubuntu 22.04, live ORB-SLAM3 mission, mission complete (85 s sim time) |
+| [recordings/mission_final_short.mp4](recordings/mission_final_short.mp4) | Final short demo mission, mission complete (87 s sim time) |
+| [recordings/practical3_simulation.mp4](recordings/practical3_simulation.mp4) | Practical 3 simulation run |
+| Full ORB-SLAM3 static mission (111 MB) | Attached to the repo's **Releases** page (too large for a normal git file) |
+
+---------------------------------------------------------------------------------------------------
 
 PyBullet-only simulation of a 2.2 kg X-quadrotor (Pixhawk 6C Mini + Raspberry Pi 5 + Matek 3901-10X GPS + RGB-D camera) flying an
 **autonomous search mission** in an outdoor earthquake scene. **No Gazebo, no PX4 SITL.** The simulated flight controller is our own code,

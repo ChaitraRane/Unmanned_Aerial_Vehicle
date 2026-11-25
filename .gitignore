@@ -29,3 +29,8 @@ logs/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Office lock files / recordings kept outside git history
+~$*
+# (large >100 MB recordings are published as GitHub Release assets, not committed)
+recordings/*_large.mp4
