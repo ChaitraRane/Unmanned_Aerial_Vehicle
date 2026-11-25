@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Claude / AI tooling
+.claude/
+.kilo/
+CLAUDE.md
+
+# Large nested project, archives and run artifacts
+robot_vision/
+robot_vision.zip
+*.zip
+logs/
+*.log
+
+# Installers / binaries
+*.exe
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

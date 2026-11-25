@@ -1,0 +1,136 @@
+# =============================================================================
+# Practical 4 - combined UAV + UGV + base-station coordination experiment
+# Site frame "site": ENU, metres, origin = site datum (surveyed), x East, y North, z Up.
+# The PyBullet world is built in this frame, but NO autonomy module ever receives a world position:
+# vehicles report in their own estimation frames and the base station transforms them with the
+# surveyed launch-pad registration below.
+# =============================================================================
+seed: 4
+
+sim:
+  duration_s: 330.0              # hard stop (simulation seconds)
+  dashboard_period_s: 1.0        # operator dashboard refresh (simulation seconds)
+  overview_period_s: 4.0         # PyBullet overview render refresh (software rendering is slow)
+  overview_render: {width: 800, height: 450}
+
+site:
+  boundary_xy: [[-12.0, -7.0], [12.0, -7.0], [12.0, 24.0], [-12.0, 24.0]]   # operating boundary polygon (site frame)
+  base_station_xy: [-9.5, -4.5]
+  uav_pad: {xy: [0.0, -3.0], yaw_enu_deg: 90.0}    # surveyed take-off pad (UAV config spawn) - heading North
+  ugv_pad: {xy: [3.4, -3.6], yaw_enu_deg: 90.0}    # surveyed UGV start pose - heading North
+  zones:                                          # named inspection zones shown to the operator (site frame, centre + half size)
+    - {id: Z-A, name: "Pump house yard",  center: [4.5, 8.0],  half: [3.0, 2.5]}
+    - {id: Z-B, name: "Central yard",     center: [1.5, 13.5], half: [3.5, 2.5]}
+    - {id: Z-C, name: "North-east gate",  center: [7.5, 17.0], half: [2.5, 2.5]}
+    - {id: Z-D, name: "North-west bay",   center: [-3.0, 20.0], half: [3.0, 2.5]}
+
+# Inspection targets that physically exist in the simulated world (sim side only, never sent to autonomy)
+world:
+  casualty: {xy: [1.8, 15.0], posture: standing, yaw_deg: 200}     # a person needing a ground-level check (UAV detector target)
+  valve_skid: {xy: [4.0, 8.6], half: [0.30, 0.45, 0.35]}            # pump-house valve skid (known asset)
+  gate: {xy: [8.2, 18.2]}                                            # perimeter gate (two posts + cross bar)
+  hot_spot: {xy: [-2.0, 21.5], temp_c: 420.0, radius_m: 1.0}         # overheating cable drum (thermal hazard)
+
+# Operator task list at mission start (site frame). Tasks created later come from vehicle observations.
+tasks:
+  - id: T1
+    name: "Aerial survey of site"
+    type: AERIAL_SURVEY
+    capabilities: [uav]
+    priority: 0.9
+    # survey waypoints (site frame); the UAV mission controller visits them with A* + VFH+ on its own map
+    waypoints: [[-2.6, 3.5], [-1.4, 9.8], [-0.2, 16.0], [-4.0, 17.0], [1.0, 21.0], [4.5, 17.5]]
+  - id: T2
+    name: "Close inspection: pump-house valve skid"
+    type: GROUND_INSPECT
+    capabilities: [ugv]
+    priority: 0.8
+    target_xy: [4.0, 8.6]
+    approach_xy: [3.5, 6.7]          # operator-chosen stand-off point in front of the asset
+    zone: Z-A
+    requires_aerial_clearance: false
+  - id: T3
+    name: "Visual check: north-east perimeter gate"
+    type: VISUAL_CHECK
+    capabilities: [ugv, uav]
+    preferred: ugv                   # ground-level view of the latch preferred; UAV overview acceptable
+    priority: 0.55
+    target_xy: [8.2, 18.2]
+    approach_xy: [6.3, 16.0]
+    zone: Z-C
+    requires_aerial_clearance: false
+  - id: T4
+    name: "Thermal/visual check: north-west bay cable drum"
+    type: VISUAL_CHECK
+    capabilities: [uav, ugv]
+    preferred: uav                   # thermal camera is on the UAV
+    priority: 0.4
+    target_xy: [-2.0, 21.5]
+    approach_xy: [-4.6, 19.2]
+    zone: Z-D
+    requires_aerial_clearance: true  # released only after the UAV has aerially covered zone Z-D
+
+observation_tasks:                    # how vehicle observations become new tasks
+  survivor:                           # UAV confirmed person -> ground-level casualty check (needs the UGV)
+    type: GROUND_INSPECT
+    capabilities: [ugv]
+    priority: 0.95
+    standoff_m: 1.6
+  hazard:                             # UAV thermal hot spot -> recorded as UGV keep-out zone, aerial monitoring only
+    keepout_radius_m: 2.5
+  duplicate_radius_m: 3.0             # an observation within this distance of an existing task does not create a new one
+
+comms:
+  latency_s: 0.05
+  jitter_s: 0.02
+  drop_prob: 0.0
+  telemetry_hz: 2.0                   # each vehicle -> base station
+  heartbeat_hz: 2.0                   # base station -> each vehicle
+  stale_timeout_s: 2.0                # newest telemetry older than this -> link STALE (agent unavailable)
+  lost_timeout_s: 8.0                 # older than this -> link LOST
+  recover_fresh_msgs: 3               # consecutive fresh telemetry messages needed to mark a link HEALTHY again
+  map_summary_period_s: 2.0           # vehicles send a down-sampled occupied-cell summary for shared situational awareness
+
+agents:
+  uav:
+    id: UAV-1
+    capabilities: [uav]
+    cruise_mps: 0.8
+    path_factor: 1.3
+    queue_capacity: 3
+    battery_reserve_pct: 30.0
+    energy_pct_per_s: 0.09            # planning estimate only (actual battery comes from the FC over MAVLink)
+  ugv:
+    id: UGV-1
+    capabilities: [ugv]
+    cruise_mps: 0.30
+    path_factor: 1.4
+    queue_capacity: 3                 # active task + 2 queued (undispatched queued tasks are re-auctioned)
+    battery_reserve_pct: 15.0
+    energy_pct_per_s: 0.02
+    link_watchdog_s: 2.5              # onboard: no base-station heartbeat for this long -> COMM_HOLD (wheels stopped)
+    inspect_dwell_s: 4.0              # stationary observation time at the inspection point
+    goal_tolerance_m: 0.45
+    max_speed_mps: 0.35
+    battery: {capacity_wh: 60.0, idle_w: 6.0, drive_w_per_mps: 40.0}   # simple simulated UGV battery (the UGV project has none)
+    map_bounds: {x_min: -7.0, x_max: 8.0, z_min: -3.0, z_max: 24.0}  # UGV occupancy grid extent in its own map frame
+
+allocator:                            # explainable utility (see coordination_sim/base_station/allocator.py)
+  w_priority: 1.0
+  w_eta: 0.5
+  eta_ref_s: 60.0
+  w_energy: 0.8
+  w_localisation: 0.4
+  w_reliability: 0.3
+  w_preference: 0.35
+  min_localisation_conf: 0.4
+
+faults:
+  ugv_link:                           # PRIMARY fault: UGV radio link outage (both directions), rest of the sim keeps running
+    target: ugv
+    trigger: {after_completed_tasks: 1, min_active_progress: 0.25, latest_t_s: 200.0}
+    duration_s: 22.0
+  uav_link:                           # OPTIONAL secondary fault: UAV <-> base-station link outage (MAVLink FC link untouched)
+    target: uav
+    trigger: {at_t_s: 60.0}
+    duration_s: 15.0

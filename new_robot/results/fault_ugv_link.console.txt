@@ -1,0 +1,147 @@
+pybullet build time: Oct 21 2025 11:46:21
+processing base_link
+	merge airframe_link into base_link!
+	merge motor_4_link into base_link!
+		relink rotor_4_link from motor_4_link to base_link!
+	merge motor_3_link into base_link!
+		relink rotor_3_link from motor_3_link to base_link!
+	merge rotor_4_link into base_link!
+	merge rotor_3_link into base_link!
+	merge motor_2_link into base_link!
+		relink rotor_2_link from motor_2_link to base_link!
+	merge motor_1_link into base_link!
+		relink rotor_1_link from motor_1_link to base_link!
+	merge rotor_2_link into base_link!
+	merge rotor_1_link into base_link!
+	merge gps_link into base_link!
+	merge thermal_camera_link into base_link!
+	merge rgbd_camera_link into base_link!
+		relink rgbd_camera_optical_link from rgbd_camera_link to base_link!
+	merge battery_link into base_link!
+	merge rgbd_camera_optical_link into base_link!
+	merge esc_link into base_link!
+	merge raspberry_pi_link into base_link!
+	merge flight_controller_link into base_link!
+
+Robot joints
+--------------------------------
+0: left_front_wheel_joint
+1: left_rear_wheel_joint
+2: right_front_wheel_joint
+3: right_rear_wheel_joint
+[   0.00] TASK_CREATED                  T1   Aerial survey of site (AERIAL_SURVEY, priority 0.9, capable: uav)
+[   0.00] TASK_CREATED                  T2   Close inspection: pump-house valve skid (GROUND_INSPECT, priority 0.8, capable: ugv)
+[   0.00] TASK_CREATED                  T3   Visual check: north-east perimeter gate (VISUAL_CHECK, priority 0.55, capable: ugv/uav)
+[   0.00] TASK_CREATED                  T4   Thermal/visual check: north-west bay cable drum (VISUAL_CHECK, priority 0.4, capable: uav/ugv) - waiting for aerial clearance
+[   0.00] EXPERIMENT                         scenario=fault_ugv_link seed=4 physics=500 Hz, one PyBullet client, UAV+UGV+base station
+[detector] onnxruntime providers: ['CPUExecutionProvider']
+[detector] backend = onnxruntime  model = D:\disaster_uav_pybullet_mavlink_fc\slam_kit_3/slam_kit/models/yolov8n.onnx
+[   0.00] UAV_SLAM_BACKEND       UAV-1       orb_pnp_vo (ORB-SLAM3 runner not found under C:\Users\Chaitra Rane/slam_deps/ORB_SLAM3 (build it with slam/build_orbslam3.sh on Linux); using the orb_pnp_vo fallback (RGB-D ORB + PnP odometry, no loop closure))
+[   0.20] MAVLINK_LINK           UAV-1       companion <-> FC MAVLink up over UDP (udp:127.0.0.1:14550), FC heartbeat received
+[   0.40] AGENT_REGISTERED       UAV-1       uav registered, frame uav_local, capabilities ['uav']
+[   0.40] INITIAL_STATUS         UAV-1       pos site=(0.0,-3.0) battery=95% loc_valid=False mode=IDLE_ON_PAD
+[   0.40] LINK_HEALTHY           UAV-1       telemetry fresh
+[   0.40] TASK_PENDING                  T1   Aerial survey of site: no feasible agent -> stays PENDING: UAV-1: localisation not valid (conf 0.00); UGV-1: capability: AERIAL_SURVEY requires uav
+[   0.40] TASK_PENDING                  T2   Close inspection: pump-house valve skid: no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: no telemetry yet
+[   0.40] TASK_PENDING                  T3   Visual check: north-east perimeter gate: no feasible agent -> stays PENDING: UAV-1: localisation not valid (conf 0.00); UGV-1: no telemetry yet
+[   1.20] AGENT_REGISTERED       UGV-1       ugv registered, frame ugv_map, capabilities ['ugv']
+[   1.80] INITIAL_STATUS         UGV-1       pos site=(3.4,-3.4) battery=100% loc_valid=True mode=IDLE
+[   1.80] LINK_HEALTHY           UGV-1       telemetry fresh
+[   1.80] TASK_ALLOCATED         UGV-1  T2   Close inspection: pump-house valve skid -> UGV-1 (utility 0.88, ETA 53 s, energy 1.1%) | UAV-1 infeasible (capability: GROUND_INSPECT requires ugv); UGV-1=0.88
+[   1.80] TASK_ALLOCATED         UGV-1  T3   Visual check: north-east perimeter gate -> UGV-1 (utility 0.99, ETA 51 s, energy 1.0%) | UAV-1=0.52; UGV-1=0.99
+[   1.80] TASK_ALLOCATED         UAV-1  T1   Aerial survey of site -> UAV-1 (utility 0.87, ETA 57 s, energy 5.1%) | UAV-1=0.87; UGV-1 infeasible (capability: AERIAL_SURVEY requires uav)
+[   1.80] TASK_DISPATCHED        UAV-1  T1   ASSIGN sent; goal in UAV-1 frame: (-2.6,6.5), (-1.4,12.8), (-0.2,19.0) ...
+[   1.80] TASK_DISPATCHED        UGV-1  T2   ASSIGN sent; goal in UGV-1 frame: (0.1,10.1), (0.6,11.9)
+[   2.00] TASK_ACK               UGV-1  T2   accepted
+[   2.00] TASK_ACK               UAV-1  T1   accepted (new sortie #1)
+[   2.40] AGENT_MODE             UAV-1  T1   IDLE_ON_PAD -> ARM
+[   2.40] TASK_ACTIVE            UAV-1  T1   UAV-1 reports ACCEPTED
+[   2.40] AGENT_MODE             UGV-1  T2   IDLE -> EN_ROUTE
+[   2.40] TASK_ACTIVE            UGV-1  T2   UGV-1 reports EN_ROUTE
+[   2.90] AGENT_MODE             UAV-1  T1   ARM -> OFFBOARD
+[   3.40] AGENT_MODE             UAV-1  T1   OFFBOARD -> TAKEOFF
+[   5.20] SCREENSHOT                         saved screenshots/01_shared_world.png
+[   6.00] AGENT_MODE             UAV-1  T1   TAKEOFF -> SEARCH
+   ... sim   10.0 s  wall     69 s  UAV SEARCH       UGV EN_ROUTE      
+   ... sim   20.0 s  wall    132 s  UAV SEARCH       UGV EN_ROUTE      
+[  22.50] AGENT_MODE             UAV-1  T1   SEARCH -> INSPECT
+[  22.50] OBSERVATION            UAV-1       UAV confirmed person (track #1) at site (1.7,14.8), lat 30.000133394330017, lon 76.00001726173063, sigma 1.01 m
+[  22.50] TASK_CREATED           UAV-1  T5   Casualty check: person #1 reported by UAV -> GROUND_INSPECT priority 0.95, approach (1.9,13.3)
+[  22.50] TASK_ALLOCATED         UGV-1  T5   Casualty check: person #1 reported by UAV -> UGV-1 (utility 0.98, ETA 59 s, energy 1.2%) | UAV-1 infeasible (capability: GROUND_INSPECT requires ugv); UGV-1=0.98
+[  25.00] AGENT_MODE             UAV-1  T1   INSPECT -> SEARCH
+[  25.20] SCREENSHOT                         saved screenshots/02_task_allocation.png
+[  27.50] OBSERVATION            UAV-1       UAV thermal hazard (fire) at site (-2.0,20.8) -> UGV keep-out r=2.5 m
+   ... sim   30.0 s  wall    190 s  UAV SEARCH       UGV EN_ROUTE      
+[  30.60] AGENT_MODE             UGV-1  T2   EN_ROUTE -> INSPECT_ALIGN
+[  31.20] AGENT_MODE             UGV-1  T2   INSPECT_ALIGN -> INSPECTING
+[  33.10] TASK_RELEASED                 T4   UAV aerial coverage of Z-D = 43% -> task released for allocation
+[  33.10] TASK_ALLOCATED         UAV-1  T4   Thermal/visual check: north-west bay cable drum -> UAV-1 (utility 0.70, ETA 59 s, energy 5.3%) | UAV-1=0.70; UGV-1 infeasible (queue full)
+[  33.10] TASK_DISPATCHED        UAV-1  T4   ASSIGN sent; goal in UAV-1 frame: (-4.6,22.2), (-2.0,24.5)
+[  33.30] TASK_ACK               UAV-1  T4   accepted (1 waypoint(s) inserted before the return leg)
+[  33.60] TASK_ACTIVE            UAV-1  T4   UAV-1 reports ACCEPTED
+[  35.20] INSPECTION_RESULT      UGV-1  T2   UGV ground view: object observed at 2.24 m (expected 2.38 m), evidence T2_t035.png
+[  35.40] AGENT_MODE             UGV-1  T2   INSPECTING -> IDLE
+[  35.40] TASK_COMPLETED         UGV-1  T2   Close inspection: pump-house valve skid completed in 35.4 s since creation
+[  35.40] NEXT_TASK_DECISION     UGV-1  T5   recommended next for UGV-1: T5; candidates [T3:already queued, T5:already queued]
+[  35.40] TASK_DISPATCHED        UGV-1  T5   ASSIGN sent; goal in UGV-1 frame: (-1.5,16.6), (-1.7,18.2)
+[  35.60] TASK_ACK               UGV-1  T5   accepted
+[  36.00] AGENT_MODE             UGV-1  T5   IDLE -> EN_ROUTE
+[  36.00] TASK_ACTIVE            UGV-1  T5   UGV-1 reports EN_ROUTE
+[  36.20] SCREENSHOT                         saved screenshots/03_task_completed.png
+   ... sim   40.0 s  wall    250 s  UAV SEARCH       UGV EN_ROUTE      
+[  42.10] FAULT_INJECTED         UGV-1       [experiment harness] ugv_link: radio link of UGV-1 forced DOWN (both directions) for 22.0 s; vehicle and simulation keep running
+[  44.00] FAULT_DETECTED         UGV-1  T5   telemetry stale: last message 2.10 s old > timeout 2.0 s -> UGV-1 marked UNAVAILABLE; last known position (3.2,8.4) is NOT treated as current
+[  44.00] TASK_INTERRUPTED       UGV-1  T5   Casualty check: person #1 reported by UAV: ACTIVE -> PENDING (progress kept 17%); stop issuing work to UGV-1
+[  44.00] TASK_UNQUEUED          UGV-1  T3   Visual check: north-east perimeter gate: ASSIGNED -> PENDING (progress kept 0%); stop issuing work to UGV-1
+[  44.00] TASK_REASSIGNED        UAV-1  T3   Visual check: north-east perimeter gate -> UAV-1 (utility -0.09, ETA 102 s, energy 9.2%) | UAV-1=-0.09; UGV-1 infeasible (link STALE (no fresh telemetry))
+[  44.00] TASK_PENDING                  T5   Casualty check: person #1 reported by UAV: no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: link STALE (no fresh telemetry)
+[  44.00] TASK_DISPATCHED        UAV-1  T3   ASSIGN sent; goal in UAV-1 frame: (6.3,19.0), (8.2,21.2)
+[  44.20] TASK_ACK               UAV-1  T3   accepted (1 waypoint(s) inserted before the return leg)
+[  44.20] SCREENSHOT                         saved screenshots/05_reassignment.png
+[  44.60] TASK_ACTIVE            UAV-1  T3   UAV-1 reports ACCEPTED
+[  46.20] SCREENSHOT                         saved screenshots/04_fault_detected.png
+[  50.00] LINK_LOST              UGV-1       no telemetry for 8.1 s (> 8.0 s)
+[  50.00] TASK_PENDING                  T5   Casualty check: person #1 reported by UAV: no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: link LOST (no fresh telemetry)
+   ... sim   50.0 s  wall    291 s  UAV SEARCH       UGV COMM_HOLD     
+   ... sim   60.0 s  wall    343 s  UAV SEARCH       UGV COMM_HOLD     
+[  64.10] FAULT_CLEARED          UGV-1       [experiment harness] ugv_link: radio link of UGV-1 restored
+[  64.80] AGENT_MODE             UGV-1  T5   EN_ROUTE -> TASK_HELD
+[  66.00] LINK_RECOVERED         UGV-1       3 consecutive fresh telemetry messages; vehicle reports mode TASK_HELD, task T5 (HELD) -> agent AVAILABLE again
+[  66.00] TASK_REASSIGNED        UGV-1  T5   Casualty check: person #1 reported by UAV -> UGV-1 (utility 1.31, ETA 26 s, energy 0.5%) | UAV-1 infeasible (capability: GROUND_INSPECT requires ugv); UGV-1=1.31
+[  66.00] TASK_DISPATCHED        UGV-1  T5   RESUME sent; goal in UGV-1 frame: (-1.5,16.6), (-1.7,18.2)
+[  66.10] TASK_COMPLETED         UAV-1  T1   Aerial survey of site completed in 66.1 s since creation
+[  66.10] NEXT_TASK_DECISION     UAV-1  T4   recommended next for UAV-1: T4; candidates [none]
+[  66.20] TASK_ACK               UGV-1  T5   accepted (resumed from HELD)
+[  66.60] AGENT_MODE             UGV-1  T5   TASK_HELD -> EN_ROUTE
+[  66.60] TASK_ACTIVE            UGV-1  T5   UGV-1 reports EN_ROUTE
+   ... sim   70.0 s  wall    406 s  UAV SEARCH       UGV EN_ROUTE      
+[  70.20] SCREENSHOT                         saved screenshots/06_recovered.png
+[  78.60] AGENT_MODE             UGV-1  T5   EN_ROUTE -> INSPECTING
+   ... sim   80.0 s  wall    463 s  UAV SEARCH       UGV INSPECTING    
+[  82.40] INSPECTION_RESULT      UGV-1  T5   UGV ground view: object NOT confirmed at 8.93 m (expected 2.02 m), evidence T5_t082.png
+[  82.80] AGENT_MODE             UGV-1  T5   INSPECTING -> IDLE
+[  82.80] TASK_COMPLETED         UGV-1  T5   Casualty check: person #1 reported by UAV completed in 60.3 s since creation
+[  82.80] NEXT_TASK_DECISION     UGV-1       recommended next for UGV-1: none (idle / hold); candidates [none]
+[  87.70] INSPECTION_RESULT      UAV-1  T4   UAV aerial visual check at 3.1 m from the target, altitude 2.0 m, image T4_check_t087.png
+[  88.10] TASK_COMPLETED         UAV-1  T4   Thermal/visual check: north-west bay cable drum completed in 88.1 s since creation
+[  88.10] NEXT_TASK_DECISION     UAV-1  T3   recommended next for UAV-1: T3; candidates [none]
+   ... sim   90.0 s  wall    514 s  UAV SEARCH       UGV IDLE          
+   ... sim  100.0 s  wall    567 s  UAV SEARCH       UGV IDLE          
+   ... sim  110.0 s  wall    621 s  UAV SEARCH       UGV IDLE          
+[ 113.90] INSPECTION_RESULT      UAV-1  T3   UAV aerial visual check at 3.2 m from the target, altitude 2.0 m, image T3_check_t113.png
+[ 114.10] AGENT_MODE             UAV-1  T3   SEARCH -> RETURN
+[ 114.10] TASK_COMPLETED         UAV-1  T3   Visual check: north-east perimeter gate completed in 114.1 s since creation
+[ 114.10] NEXT_TASK_DECISION     UAV-1       recommended next for UAV-1: none (idle / hold); candidates [none]
+   ... sim  120.0 s  wall    675 s  UAV RETURN       UGV IDLE          
+   ... sim  130.0 s  wall    736 s  UAV RETURN       UGV IDLE          
+   ... sim  140.0 s  wall    788 s  UAV RETURN       UGV IDLE          
+   ... sim  150.0 s  wall    840 s  UAV RETURN       UGV IDLE          
+[ 157.60] AGENT_MODE             UAV-1  T3   RETURN -> HOLD_END
+   ... sim  160.0 s  wall    891 s  UAV HOLD_END     UGV IDLE          
+[ 163.60] AGENT_MODE             UAV-1  T3   HOLD_END -> LANDING
+   ... sim  170.0 s  wall    943 s  UAV LANDING      UGV IDLE          
+[ 172.00] EXPERIMENT_END                     all tasks terminal and UAV landed
+[ 172.00] SCREENSHOT                         saved screenshots/07_final.png
+
+FINAL TASK STATES: {'T1': 'COMPLETED', 'T2': 'COMPLETED', 'T3': 'COMPLETED', 'T4': 'COMPLETED', 'T5': 'COMPLETED'}
+summary: D:\disaster_uav_pybullet_mavlink_fc\new_robot\results\fault_ugv_link\summary.md

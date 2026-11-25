@@ -1,0 +1,791 @@
+{
+ "scenario": "fault_ugv_link",
+ "seed": 4,
+ "sim_time_s": 172.0,
+ "wall_time_s": 953.6,
+ "physics_hz": 500,
+ "uav_slam_backend": "orb_pnp_vo",
+ "uav_slam_note": "ORB-SLAM3 runner not found under C:\\Users\\Chaitra Rane/slam_deps/ORB_SLAM3 (build it with slam/build_orbslam3.sh on Linux); using the orb_pnp_vo fallback (RGB-D ORB + PnP odometry, no loop closure)",
+ "tasks": {
+  "T1": {
+   "id": "T1",
+   "name": "Aerial survey of site",
+   "type": "AERIAL_SURVEY",
+   "capabilities": [
+    "uav"
+   ],
+   "priority": 0.9,
+   "state": "COMPLETED",
+   "assigned_to": "UAV-1",
+   "progress": 1.0,
+   "note": "completed by UAV-1",
+   "source": "operator",
+   "target_xy": null,
+   "approach_xy": null,
+   "zone": null,
+   "created_t": 0.0,
+   "completed_t": 66.1,
+   "completed_by": "UAV-1",
+   "interruptions": 0,
+   "result": null,
+   "history": [
+    {
+     "t": 0.0,
+     "state": "READY",
+     "note": "created by operator"
+    },
+    {
+     "t": 0.4,
+     "state": "READY",
+     "note": "no feasible agent -> stays PENDING: UAV-1: localisation not valid (conf 0.00); UGV-1: capability: AERIAL_SURVEY requires uav"
+    },
+    {
+     "t": 1.8,
+     "state": "ASSIGNED",
+     "agent": "UAV-1",
+     "note": "to UAV-1, utility 0.87, ETA 57 s"
+    },
+    {
+     "t": 2.4,
+     "state": "ACTIVE",
+     "agent": "UAV-1",
+     "note": "UAV-1 executing (ACCEPTED)"
+    },
+    {
+     "t": 66.1,
+     "state": "COMPLETED",
+     "agent": "UAV-1",
+     "note": "completed by UAV-1"
+    }
+   ]
+  },
+  "T2": {
+   "id": "T2",
+   "name": "Close inspection: pump-house valve skid",
+   "type": "GROUND_INSPECT",
+   "capabilities": [
+    "ugv"
+   ],
+   "priority": 0.8,
+   "state": "COMPLETED",
+   "assigned_to": "UGV-1",
+   "progress": 1.0,
+   "note": "completed by UGV-1",
+   "source": "operator",
+   "target_xy": [
+    4.0,
+    8.6
+   ],
+   "approach_xy": [
+    3.5,
+    6.7
+   ],
+   "zone": "Z-A",
+   "created_t": 0.0,
+   "completed_t": 35.4,
+   "completed_by": "UGV-1",
+   "interruptions": 0,
+   "result": {
+    "task_id": "T2",
+    "target_range_m": 2.24,
+    "expected_range_m": 2.38,
+    "target_observed": true,
+    "evidence_image": "evidence_ugv\\T2_t035.png",
+    "summary": "UGV ground view: object observed at 2.24 m (expected 2.38 m), evidence T2_t035.png"
+   },
+   "history": [
+    {
+     "t": 0.0,
+     "state": "READY",
+     "note": "created by operator"
+    },
+    {
+     "t": 0.4,
+     "state": "READY",
+     "note": "no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: no telemetry yet"
+    },
+    {
+     "t": 1.8,
+     "state": "ASSIGNED",
+     "agent": "UGV-1",
+     "note": "to UGV-1, utility 0.88, ETA 53 s"
+    },
+    {
+     "t": 2.4,
+     "state": "ACTIVE",
+     "agent": "UGV-1",
+     "note": "UGV-1 executing (EN_ROUTE)"
+    },
+    {
+     "t": 35.4,
+     "state": "COMPLETED",
+     "agent": "UGV-1",
+     "note": "completed by UGV-1"
+    }
+   ]
+  },
+  "T3": {
+   "id": "T3",
+   "name": "Visual check: north-east perimeter gate",
+   "type": "VISUAL_CHECK",
+   "capabilities": [
+    "ugv",
+    "uav"
+   ],
+   "priority": 0.55,
+   "state": "COMPLETED",
+   "assigned_to": "UAV-1",
+   "progress": 1.0,
+   "note": "completed by UAV-1",
+   "source": "operator",
+   "target_xy": [
+    8.2,
+    18.2
+   ],
+   "approach_xy": [
+    6.3,
+    16.0
+   ],
+   "zone": "Z-C",
+   "created_t": 0.0,
+   "completed_t": 114.1,
+   "completed_by": "UAV-1",
+   "interruptions": 0,
+   "result": {
+    "task_id": "T3",
+    "evidence_image": "evidence_uav\\T3_check_t113.png",
+    "range_to_target_m": 3.19,
+    "summary": "UAV aerial visual check at 3.2 m from the target, altitude 2.0 m, image T3_check_t113.png"
+   },
+   "history": [
+    {
+     "t": 0.0,
+     "state": "READY",
+     "note": "created by operator"
+    },
+    {
+     "t": 0.4,
+     "state": "READY",
+     "note": "no feasible agent -> stays PENDING: UAV-1: localisation not valid (conf 0.00); UGV-1: no telemetry yet"
+    },
+    {
+     "t": 1.8,
+     "state": "ASSIGNED",
+     "agent": "UGV-1",
+     "note": "to UGV-1, utility 0.99, ETA 51 s"
+    },
+    {
+     "t": 44.0,
+     "state": "READY",
+     "agent": null,
+     "note": "interrupted: UGV-1 link STALE (was ASSIGNED at 0%)"
+    },
+    {
+     "t": 44.0,
+     "state": "ASSIGNED",
+     "agent": "UAV-1",
+     "note": "to UAV-1, utility -0.09, ETA 102 s"
+    },
+    {
+     "t": 44.6,
+     "state": "ACTIVE",
+     "agent": "UAV-1",
+     "note": "UAV-1 executing (ACCEPTED)"
+    },
+    {
+     "t": 114.1,
+     "state": "COMPLETED",
+     "agent": "UAV-1",
+     "note": "completed by UAV-1"
+    }
+   ]
+  },
+  "T4": {
+   "id": "T4",
+   "name": "Thermal/visual check: north-west bay cable drum",
+   "type": "VISUAL_CHECK",
+   "capabilities": [
+    "uav",
+    "ugv"
+   ],
+   "priority": 0.4,
+   "state": "COMPLETED",
+   "assigned_to": "UAV-1",
+   "progress": 1.0,
+   "note": "completed by UAV-1",
+   "source": "operator",
+   "target_xy": [
+    -2.0,
+    21.5
+   ],
+   "approach_xy": [
+    -4.6,
+    19.2
+   ],
+   "zone": "Z-D",
+   "created_t": 0.0,
+   "completed_t": 88.1,
+   "completed_by": "UAV-1",
+   "interruptions": 0,
+   "result": {
+    "task_id": "T4",
+    "evidence_image": "evidence_uav\\T4_check_t087.png",
+    "range_to_target_m": 3.1,
+    "summary": "UAV aerial visual check at 3.1 m from the target, altitude 2.0 m, image T4_check_t087.png"
+   },
+   "history": [
+    {
+     "t": 0.0,
+     "state": "CANDIDATE",
+     "note": "created by operator"
+    },
+    {
+     "t": 33.1,
+     "state": "READY",
+     "agent": null,
+     "note": "zone Z-D aerially covered (43%)"
+    },
+    {
+     "t": 33.1,
+     "state": "ASSIGNED",
+     "agent": "UAV-1",
+     "note": "to UAV-1, utility 0.70, ETA 59 s"
+    },
+    {
+     "t": 33.6,
+     "state": "ACTIVE",
+     "agent": "UAV-1",
+     "note": "UAV-1 executing (ACCEPTED)"
+    },
+    {
+     "t": 88.1,
+     "state": "COMPLETED",
+     "agent": "UAV-1",
+     "note": "completed by UAV-1"
+    }
+   ]
+  },
+  "T5": {
+   "id": "T5",
+   "name": "Casualty check: person #1 reported by UAV",
+   "type": "GROUND_INSPECT",
+   "capabilities": [
+    "ugv"
+   ],
+   "priority": 0.95,
+   "state": "COMPLETED",
+   "assigned_to": "UGV-1",
+   "progress": 1.0,
+   "note": "completed by UGV-1",
+   "source": "UAV-1 observation",
+   "target_xy": [
+    1.6837039022516738,
+    14.837712571403621
+   ],
+   "approach_xy": [
+    1.9287504178194452,
+    13.256588855431941
+   ],
+   "zone": "Z-B",
+   "created_t": 22.5,
+   "completed_t": 82.8,
+   "completed_by": "UGV-1",
+   "interruptions": 1,
+   "result": {
+    "task_id": "T5",
+    "target_range_m": 8.93,
+    "expected_range_m": 2.02,
+    "target_observed": false,
+    "evidence_image": "evidence_ugv\\T5_t082.png",
+    "summary": "UGV ground view: object NOT confirmed at 8.93 m (expected 2.02 m), evidence T5_t082.png"
+   },
+   "history": [
+    {
+     "t": 22.5,
+     "state": "READY",
+     "note": "created by UAV-1 observation"
+    },
+    {
+     "t": 22.5,
+     "state": "ASSIGNED",
+     "agent": "UGV-1",
+     "note": "to UGV-1, utility 0.98, ETA 59 s"
+    },
+    {
+     "t": 36.0,
+     "state": "ACTIVE",
+     "agent": "UGV-1",
+     "note": "UGV-1 executing (EN_ROUTE)"
+    },
+    {
+     "t": 44.0,
+     "state": "READY",
+     "agent": null,
+     "note": "interrupted: UGV-1 link STALE (was ACTIVE at 17%)"
+    },
+    {
+     "t": 44.0,
+     "state": "READY",
+     "note": "no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: link STALE (no fresh telemetry)"
+    },
+    {
+     "t": 50.0,
+     "state": "READY",
+     "note": "no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: link LOST (no fresh telemetry)"
+    },
+    {
+     "t": 66.0,
+     "state": "ASSIGNED",
+     "agent": "UGV-1",
+     "note": "to UGV-1, utility 1.31, ETA 26 s"
+    },
+    {
+     "t": 66.6,
+     "state": "ACTIVE",
+     "agent": "UGV-1",
+     "note": "UGV-1 executing (EN_ROUTE)"
+    },
+    {
+     "t": 82.8,
+     "state": "COMPLETED",
+     "agent": "UGV-1",
+     "note": "completed by UGV-1"
+    }
+   ]
+  }
+ },
+ "task_states": {
+  "T1": "COMPLETED",
+  "T2": "COMPLETED",
+  "T3": "COMPLETED",
+  "T4": "COMPLETED",
+  "T5": "COMPLETED"
+ },
+ "completed": [
+  "T1",
+  "T2",
+  "T3",
+  "T4",
+  "T5"
+ ],
+ "agents": {
+  "UAV-1": {
+   "link": "HEALTHY",
+   "mode": "LANDING",
+   "battery_pct": 88.0,
+   "completed": 3,
+   "failed": 0,
+   "pos_site": [
+    0.0015656491817585504,
+    -2.602184303152788
+   ]
+  },
+  "UGV-1": {
+   "link": "HEALTHY",
+   "mode": "IDLE",
+   "battery_pct": 99.2,
+   "completed": 2,
+   "failed": 0,
+   "pos_site": [
+    2.0550889545269015,
+    12.851477106930675
+   ]
+  }
+ },
+ "fault": {
+  "name": "fault_ugv_link",
+  "target": "UGV-1",
+  "injected_t": 42.1,
+  "cleared_t": 64.1,
+  "detected_t": 44.0,
+  "stale_timeout_s": 2.0
+ },
+ "radio": {
+  "sent": 1507,
+  "delivered": 1412,
+  "dropped_random": 0,
+  "dropped_link_down": 92
+ },
+ "eval_ground_truth_only": {
+  "uav_site_position_error_m": {
+   "rmse": 0.34964236296070345,
+   "max": 0.6159496732688476
+  },
+  "ugv_site_position_error_m": {
+   "rmse": 0.2020461631577883,
+   "max": 0.33653677362214013
+  },
+  "uav_always_inside_boundary": true,
+  "ugv_always_inside_boundary": true,
+  "collisions": {
+   "ugv": [],
+   "uav": []
+  },
+  "uav_mission_events": [
+   {
+    "t": 3.0,
+    "event": "TAKEOFF"
+   },
+   {
+    "t": 16.2,
+    "event": "WAYPOINT_REACHED",
+    "target": "T1:WP1"
+   },
+   {
+    "t": 22.2,
+    "event": "SURVIVOR_CONFIRMED",
+    "track_ids": [
+     1
+    ]
+   },
+   {
+    "t": 27.8,
+    "event": "WAYPOINT_REACHED",
+    "target": "T1:WP2"
+   },
+   {
+    "t": 35.6,
+    "event": "WAYPOINT_REACHED",
+    "target": "T1:WP3"
+   },
+   {
+    "t": 41.4,
+    "event": "WAYPOINT_REACHED",
+    "target": "T1:WP4"
+   },
+   {
+    "t": 58.8,
+    "event": "WAYPOINT_REACHED",
+    "target": "T1:WP5"
+   },
+   {
+    "t": 66.0,
+    "event": "WAYPOINT_REACHED",
+    "target": "T1:WP6"
+   },
+   {
+    "t": 87.6,
+    "event": "WAYPOINT_REACHED",
+    "target": "T4:CHECK"
+   },
+   {
+    "t": 113.8,
+    "event": "WAYPOINT_REACHED",
+    "target": "T3:CHECK"
+   },
+   {
+    "t": 157.4,
+    "event": "WAYPOINT_REACHED",
+    "target": "RETURN home"
+   },
+   {
+    "t": 157.4,
+    "event": "MISSION_END",
+    "reason": "mission complete",
+    "end_action": "land"
+   },
+   {
+    "t": 163.5,
+    "event": "LAND_REQUESTED",
+    "reason": "mission complete",
+    "failsafe": false
+   },
+   {
+    "t": 172.0,
+    "event": "LANDED",
+    "reason": "mission complete"
+   }
+  ]
+ },
+ "uav_agent_events": [
+  {
+   "t": 1.9,
+   "event": "SORTIE_START",
+   "sortie": 1,
+   "waypoints": [
+    "T1:WP1",
+    "T1:WP2",
+    "T1:WP3",
+    "T1:WP4",
+    "T1:WP5",
+    "T1:WP6"
+   ]
+  },
+  {
+   "t": 1.9,
+   "event": "TASK_ACCEPTED",
+   "task": "T1",
+   "how": "new sortie #1"
+  },
+  {
+   "t": 33.2,
+   "event": "TASK_ACCEPTED",
+   "task": "T4",
+   "how": "1 waypoint(s) inserted before the return leg"
+  },
+  {
+   "t": 44.1,
+   "event": "TASK_ACCEPTED",
+   "task": "T3",
+   "how": "1 waypoint(s) inserted before the return leg"
+  },
+  {
+   "t": 66.0,
+   "event": "TASK_COMPLETED",
+   "task": "T1"
+  },
+  {
+   "t": 87.6,
+   "event": "TASK_COMPLETED",
+   "task": "T4"
+  },
+  {
+   "t": 113.8,
+   "event": "TASK_COMPLETED",
+   "task": "T3"
+  }
+ ],
+ "ugv_agent_events": [
+  {
+   "t": 1.1,
+   "event": "LOCALISATION_INITIALISED"
+  },
+  {
+   "t": 1.3,
+   "event": "MODE",
+   "mode": "COMM_HOLD"
+  },
+  {
+   "t": 1.5,
+   "event": "MODE",
+   "mode": "IDLE"
+  },
+  {
+   "t": 1.9,
+   "event": "TASK_ACCEPTED",
+   "task": "T2",
+   "goal": [
+    0.09999999999999948,
+    10.05
+   ]
+  },
+  {
+   "t": 1.9,
+   "event": "MODE",
+   "mode": "EN_ROUTE"
+  },
+  {
+   "t": 27.7,
+   "event": "KEEPOUT_RECEIVED",
+   "xy": [
+    -5.430653024625469,
+    24.108603130357835
+   ]
+  },
+  {
+   "t": 30.1,
+   "event": "GOAL_REACHED",
+   "task": "T2",
+   "dist": 0.44
+  },
+  {
+   "t": 30.1,
+   "event": "MODE",
+   "mode": "INSPECT_ALIGN"
+  },
+  {
+   "t": 31.1,
+   "event": "INSPECTION_STARTED",
+   "task": "T2"
+  },
+  {
+   "t": 31.1,
+   "event": "MODE",
+   "mode": "INSPECTING"
+  },
+  {
+   "t": 35.1,
+   "event": "TASK_COMPLETED",
+   "task": "T2",
+   "task_id": "T2",
+   "target_range_m": 2.24,
+   "expected_range_m": 2.38,
+   "target_observed": true,
+   "evidence_image": "evidence_ugv\\T2_t035.png",
+   "summary": "UGV ground view: object observed at 2.24 m (expected 2.38 m), evidence T2_t035.png"
+  },
+  {
+   "t": 35.1,
+   "event": "MODE",
+   "mode": "IDLE"
+  },
+  {
+   "t": 35.5,
+   "event": "TASK_ACCEPTED",
+   "task": "T5",
+   "goal": [
+    -1.4712495821805558,
+    16.60658885543194
+   ]
+  },
+  {
+   "t": 35.5,
+   "event": "MODE",
+   "mode": "EN_ROUTE"
+  },
+  {
+   "t": 44.7,
+   "event": "COMM_WATCHDOG",
+   "heartbeat_age_s": 2.6
+  },
+  {
+   "t": 44.7,
+   "event": "MODE",
+   "mode": "COMM_HOLD"
+  },
+  {
+   "t": 64.7,
+   "event": "MODE",
+   "mode": "TASK_HELD"
+  },
+  {
+   "t": 66.1,
+   "event": "TASK_RESUMED",
+   "task": "T5"
+  },
+  {
+   "t": 66.1,
+   "event": "MODE",
+   "mode": "EN_ROUTE"
+  },
+  {
+   "t": 78.3,
+   "event": "GOAL_REACHED",
+   "task": "T5",
+   "dist": 0.43
+  },
+  {
+   "t": 78.3,
+   "event": "INSPECTION_STARTED",
+   "task": "T5"
+  },
+  {
+   "t": 78.3,
+   "event": "MODE",
+   "mode": "INSPECTING"
+  },
+  {
+   "t": 82.3,
+   "event": "TASK_COMPLETED",
+   "task": "T5",
+   "task_id": "T5",
+   "target_range_m": 8.93,
+   "expected_range_m": 2.02,
+   "target_observed": false,
+   "evidence_image": "evidence_ugv\\T5_t082.png",
+   "summary": "UGV ground view: object NOT confirmed at 8.93 m (expected 2.02 m), evidence T5_t082.png"
+  },
+  {
+   "t": 82.3,
+   "event": "MODE",
+   "mode": "IDLE"
+  }
+ ],
+ "ugv_stats": {
+  "vo_updates": 854,
+  "vo_success": 854,
+  "plans": 25,
+  "plan_failures": 0,
+  "emergency_stops": 0,
+  "comm_hold_s": 20.19999999999996
+ },
+ "ugv_viwo": {
+  "imu_propagations": 28484,
+  "wheel_updates_accepted": 8544,
+  "wheel_updates_rejected": 0,
+  "wheel_slip_events": 0,
+  "yaw_calibration_windows_opened": 15,
+  "yaw_calibration_observations": 0,
+  "yaw_calibration_rejected_outlier": 0,
+  "yaw_calibration_frozen_no_visual": 0,
+  "visual_updates_accepted": 854,
+  "visual_updates_rejected": 0,
+  "visual_rejected_quality": 0,
+  "visual_rejected_plausibility": 0,
+  "visual_rejected_gate": 0,
+  "propagation_only_time_s": 0.0,
+  "max_position_sigma": 0.021473469960729984,
+  "visual_lockout_inflations": 0,
+  "position_sigma_m": 0.0124,
+  "heading_sigma_deg": 0.3919,
+  "covariance_trace": 0.093,
+  "confidence": "LOCALIZATION_CONFIDENT",
+  "may_write_map": true,
+  "may_translate": true,
+  "speed_scale": 1.0,
+  "wheel_slip_score": 0.0546,
+  "rotation_translation_debt_m": 0.0,
+  "wheel_weight": 0.6961,
+  "yaw_scale": 1.0,
+  "wheel_speed_scale": 1.0002,
+  "camera_lever_m": 0.25,
+  "yaw_calibration_open": true,
+  "last_yaw_calibration_obs": null,
+  "encoder_yaw_rate": -0.03229,
+  "gyro_yaw_rate": 0.03697,
+  "yaw_disagreement": -0.06926,
+  "bgy_syaw_correlation": 0.0,
+  "yaw_scale_sigma": 0.3,
+  "wheel_innovation": 0.0262,
+  "visual_innovation": 0.0035,
+  "visual_rotation_innovation_deg": 0.269,
+  "visual_chi2": 0.0571,
+  "consecutive_visual_gate_rejections": 0,
+  "visual_quality_scale": 1.0,
+  "visual_implied_speed_mps": 0.0173,
+  "visual_implied_yaw_rate_dps": 1.3451,
+  "gyro_bias": [
+   -0.00152,
+   0.00327,
+   0.00712
+  ],
+  "accel_bias": [
+   0.52878,
+   0.00325,
+   0.45308
+  ],
+  "uses_ground_truth": false,
+  "uses_simulator_state": false
+ },
+ "screenshots": {
+  "01_shared_world": 5.2,
+  "02_task_allocation": 25.2,
+  "03_task_completed": 36.2,
+  "05_reassignment": 44.2,
+  "04_fault_detected": 46.2,
+  "06_recovered": 70.2,
+  "07_final": 172.0
+ },
+ "mavlink": {
+  "server_rx": {
+   "HEARTBEAT": 1769,
+   "SET_POSITION_TARGET_LOCAL_NED": 1701,
+   "COMMAND_LONG": 10,
+   "SET_MODE": 4
+  },
+  "server_tx": {
+   "HEARTBEAT": 345,
+   "LOCAL_POSITION_NED": 5158,
+   "ATTITUDE": 8596,
+   "GLOBAL_POSITION_INT": 1721,
+   "SYS_STATUS": 345,
+   "HIGHRES_IMU": 17192,
+   "RAW_RPM": 6884,
+   "ACTUATOR_OUTPUT_STATUS": 1721,
+   "GPS_RAW_INT": 1719,
+   "COMMAND_ACK": 10,
+   "STATUSTEXT": 11
+  },
+  "companion_setpoints_sent": 1702
+ }
+}

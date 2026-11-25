@@ -1,0 +1,95 @@
+t_s,category,agent,task,message,details_json
+0.00,TASK_CREATED,,T1,"Aerial survey of site (AERIAL_SURVEY, priority 0.9, capable: uav)",
+0.00,TASK_CREATED,,T2,"Close inspection: pump-house valve skid (GROUND_INSPECT, priority 0.8, capable: ugv)",
+0.00,TASK_CREATED,,T3,"Visual check: north-east perimeter gate (VISUAL_CHECK, priority 0.55, capable: ugv/uav)",
+0.00,TASK_CREATED,,T4,"Thermal/visual check: north-west bay cable drum (VISUAL_CHECK, priority 0.4, capable: uav/ugv) - waiting for aerial clearance",
+0.00,EXPERIMENT,,,"scenario=fault_ugv_link seed=4 physics=500 Hz, one PyBullet client, UAV+UGV+base station",
+0.00,UAV_SLAM_BACKEND,UAV-1,,"orb_pnp_vo (ORB-SLAM3 runner not found under C:\Users\Chaitra Rane/slam_deps/ORB_SLAM3 (build it with slam/build_orbslam3.sh on Linux); using the orb_pnp_vo fallback (RGB-D ORB + PnP odometry, no loop closure))",
+0.20,MAVLINK_LINK,UAV-1,,"companion <-> FC MAVLink up over UDP (udp:127.0.0.1:14550), FC heartbeat received",
+0.40,AGENT_REGISTERED,UAV-1,,"uav registered, frame uav_local, capabilities ['uav']","{""sensors"": [""rgbd_camera 640x480 @5Hz"", ""thermal 160x120"", ""imu"", ""gps""], ""software"": {""slam"": ""orb_pnp_vo"", ""slam_note"": ""ORB-SLAM3 runner not found under C:\\Users\\Chaitra Rane/slam_deps/ORB_SLAM3 (build it with slam/build_orbslam3.sh on Linux); using the orb_pnp_vo fallback (RGB-D ORB + PnP odometry, no loop closure)"", ""mission"": ""MissionController A*+VFH+"", ""fc_link"": ""MAVLink 2 over UDP (companion_mavlink -> MavlinkFcServer)""}}"
+0.40,INITIAL_STATUS,UAV-1,,"pos site=(0.0,-3.0) battery=95% loc_valid=False mode=IDLE_ON_PAD",
+0.40,LINK_HEALTHY,UAV-1,,telemetry fresh,
+0.40,TASK_PENDING,,T1,Aerial survey of site: no feasible agent -> stays PENDING: UAV-1: localisation not valid (conf 0.00); UGV-1: capability: AERIAL_SURVEY requires uav,
+0.40,TASK_PENDING,,T2,Close inspection: pump-house valve skid: no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: no telemetry yet,
+0.40,TASK_PENDING,,T3,Visual check: north-east perimeter gate: no feasible agent -> stays PENDING: UAV-1: localisation not valid (conf 0.00); UGV-1: no telemetry yet,
+1.20,AGENT_REGISTERED,UGV-1,,"ugv registered, frame ugv_map, capabilities ['ugv']","{""sensors"": [""rgbd_camera 640x480"", ""imu"", ""wheel_encoders""], ""software"": {""localisation"": ""VisualOdometry + ViwoEstimator (ESKF)"", ""mapping"": ""Stage-8 OccupancyMap"", ""planning"": ""Stage-8 GlobalPlanner A* + LocalPlanner gaps""}}"
+1.80,INITIAL_STATUS,UGV-1,,"pos site=(3.4,-3.4) battery=100% loc_valid=True mode=IDLE",
+1.80,LINK_HEALTHY,UGV-1,,telemetry fresh,
+1.80,TASK_ALLOCATED,UGV-1,T2,"Close inspection: pump-house valve skid -> UGV-1 (utility 0.88, ETA 53 s, energy 1.1%) | UAV-1 infeasible (capability: GROUND_INSPECT requires ugv); UGV-1=0.88","{""terms"": {""priority"": 0.8, ""eta"": -0.4409, ""energy"": -0.01, ""localisation"": 0.38, ""reliability"": 0.15, ""preference"": 0.0}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": false, ""utility"": null, ""terms"": {}, ""reason"": ""capability: GROUND_INSPECT requires ugv""}, {""agent"": ""UGV-1"", ""feasible"": true, ""utility"": 0.8791, ""terms"": {""priority"": 0.8, ""eta"": -0.4409, ""energy"": -0.01, ""localisation"": 0.38, ""reliability"": 0.15, ""preference"": 0.0}, ""reason"": """", ""eta_s"": 52.9, ""energy_pct"": 1.06}]}"
+1.80,TASK_ALLOCATED,UGV-1,T3,"Visual check: north-east perimeter gate -> UGV-1 (utility 0.99, ETA 51 s, energy 1.0%) | UAV-1=0.52; UGV-1=0.99","{""terms"": {""priority"": 0.55, ""eta"": -0.4277, ""energy"": -0.0097, ""localisation"": 0.38, ""reliability"": 0.15, ""preference"": 0.35}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": true, ""utility"": 0.5213, ""terms"": {""priority"": 0.55, ""eta"": -0.3211, ""energy"": -0.0427, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": -0.175}, ""reason"": """", ""eta_s"": 38.5, ""energy_pct"": 3.47}, {""agent"": ""UGV-1"", ""feasible"": true, ""utility"": 0.9926, ""terms"": {""priority"": 0.55, ""eta"": -0.4277, ""energy"": -0.0097, ""localisation"": 0.38, ""reliability"": 0.15, ""preference"": 0.35}, ""reason"": """", ""eta_s"": 51.3, ""energy_pct"": 1.03}]}"
+1.80,TASK_ALLOCATED,UAV-1,T1,"Aerial survey of site -> UAV-1 (utility 0.87, ETA 57 s, energy 5.1%) | UAV-1=0.87; UGV-1 infeasible (capability: AERIAL_SURVEY requires uav)","{""terms"": {""priority"": 0.9, ""eta"": -0.4741, ""energy"": -0.063, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": 0.0}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": true, ""utility"": 0.8729, ""terms"": {""priority"": 0.9, ""eta"": -0.4741, ""energy"": -0.063, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": 0.0}, ""reason"": """", ""eta_s"": 56.9, ""energy_pct"": 5.12}, {""agent"": ""UGV-1"", ""feasible"": false, ""utility"": null, ""terms"": {}, ""reason"": ""capability: AERIAL_SURVEY requires uav""}]}"
+1.80,TASK_DISPATCHED,UAV-1,T1,"ASSIGN sent; goal in UAV-1 frame: (-2.6,6.5), (-1.4,12.8), (-0.2,19.0) ...",
+1.80,TASK_DISPATCHED,UGV-1,T2,"ASSIGN sent; goal in UGV-1 frame: (0.1,10.1), (0.6,11.9)",
+2.00,TASK_ACK,UGV-1,T2,accepted,
+2.00,TASK_ACK,UAV-1,T1,accepted (new sortie #1),
+2.40,AGENT_MODE,UAV-1,T1,IDLE_ON_PAD -> ARM,
+2.40,TASK_ACTIVE,UAV-1,T1,UAV-1 reports ACCEPTED,
+2.40,AGENT_MODE,UGV-1,T2,IDLE -> EN_ROUTE,
+2.40,TASK_ACTIVE,UGV-1,T2,UGV-1 reports EN_ROUTE,
+2.90,AGENT_MODE,UAV-1,T1,ARM -> OFFBOARD,
+3.40,AGENT_MODE,UAV-1,T1,OFFBOARD -> TAKEOFF,
+5.20,SCREENSHOT,,,saved screenshots/01_shared_world.png,
+6.00,AGENT_MODE,UAV-1,T1,TAKEOFF -> SEARCH,
+22.50,AGENT_MODE,UAV-1,T1,SEARCH -> INSPECT,
+22.50,OBSERVATION,UAV-1,,"UAV confirmed person (track #1) at site (1.7,14.8), lat 30.000133394330017, lon 76.00001726173063, sigma 1.01 m","{""track_id"": 1, ""confidence"": 1.0, ""lat"": 30.000133394330017, ""lon"": 76.00001726173063, ""sigma_m"": 1.01, ""observations"": 4, ""evidence"": ""results/fault_ugv_link_closeup\\evidence_uav\\f00108_404_231.jpg""}"
+22.50,TASK_CREATED,UAV-1,T5,"Casualty check: person #1 reported by UAV -> GROUND_INSPECT priority 0.95, approach (1.9,13.3)",
+22.50,TASK_ALLOCATED,UGV-1,T5,"Casualty check: person #1 reported by UAV -> UGV-1 (utility 0.98, ETA 59 s, energy 1.2%) | UAV-1 infeasible (capability: GROUND_INSPECT requires ugv); UGV-1=0.98","{""terms"": {""priority"": 0.95, ""eta"": -0.4934, ""energy"": -0.0112, ""localisation"": 0.38, ""reliability"": 0.15, ""preference"": 0.0}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": false, ""utility"": null, ""terms"": {}, ""reason"": ""capability: GROUND_INSPECT requires ugv""}, {""agent"": ""UGV-1"", ""feasible"": true, ""utility"": 0.9754, ""terms"": {""priority"": 0.95, ""eta"": -0.4934, ""energy"": -0.0112, ""localisation"": 0.38, ""reliability"": 0.15, ""preference"": 0.0}, ""reason"": """", ""eta_s"": 59.2, ""energy_pct"": 1.18}]}"
+25.00,AGENT_MODE,UAV-1,T1,INSPECT -> SEARCH,
+25.20,SCREENSHOT,,,saved screenshots/02_task_allocation.png,
+27.50,OBSERVATION,UAV-1,,"UAV thermal hazard (fire) at site (-2.0,20.8) -> UGV keep-out r=2.5 m","{""hazard_id"": 1, ""kind"": ""fire"", ""temp_c"": 420.1}"
+30.60,AGENT_MODE,UGV-1,T2,EN_ROUTE -> INSPECT_ALIGN,
+31.20,AGENT_MODE,UGV-1,T2,INSPECT_ALIGN -> INSPECTING,
+33.10,TASK_RELEASED,,T4,UAV aerial coverage of Z-D = 43% -> task released for allocation,
+33.10,TASK_ALLOCATED,UAV-1,T4,"Thermal/visual check: north-west bay cable drum -> UAV-1 (utility 0.70, ETA 59 s, energy 5.3%) | UAV-1=0.70; UGV-1 infeasible (queue full)","{""terms"": {""priority"": 0.4, ""eta"": -0.4916, ""energy"": -0.0664, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": 0.35}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": true, ""utility"": 0.702, ""terms"": {""priority"": 0.4, ""eta"": -0.4916, ""energy"": -0.0664, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": 0.35}, ""reason"": """", ""eta_s"": 59.0, ""energy_pct"": 5.31}, {""agent"": ""UGV-1"", ""feasible"": false, ""utility"": null, ""terms"": {}, ""reason"": ""queue full""}]}"
+33.10,TASK_DISPATCHED,UAV-1,T4,"ASSIGN sent; goal in UAV-1 frame: (-4.6,22.2), (-2.0,24.5)",
+33.30,TASK_ACK,UAV-1,T4,accepted (1 waypoint(s) inserted before the return leg),
+33.60,TASK_ACTIVE,UAV-1,T4,UAV-1 reports ACCEPTED,
+35.20,INSPECTION_RESULT,UGV-1,T2,"UGV ground view: object observed at 2.24 m (expected 2.38 m), evidence T2_t035.png",
+35.40,AGENT_MODE,UGV-1,T2,INSPECTING -> IDLE,
+35.40,TASK_COMPLETED,UGV-1,T2,Close inspection: pump-house valve skid completed in 35.4 s since creation,
+35.40,NEXT_TASK_DECISION,UGV-1,T5,"recommended next for UGV-1: T5; candidates [T3:already queued, T5:already queued]","{""ranked"": [{""task"": ""T3"", ""feasible"": true, ""utility"": null, ""reason"": ""already queued""}, {""task"": ""T5"", ""feasible"": true, ""utility"": null, ""reason"": ""already queued""}], ""queued"": [""T5"", ""T3""]}"
+35.40,TASK_DISPATCHED,UGV-1,T5,"ASSIGN sent; goal in UGV-1 frame: (-1.5,16.6), (-1.7,18.2)",
+35.60,TASK_ACK,UGV-1,T5,accepted,
+36.00,AGENT_MODE,UGV-1,T5,IDLE -> EN_ROUTE,
+36.00,TASK_ACTIVE,UGV-1,T5,UGV-1 reports EN_ROUTE,
+36.20,SCREENSHOT,,,saved screenshots/03_task_completed.png,
+42.10,FAULT_INJECTED,UGV-1,,[experiment harness] ugv_link: radio link of UGV-1 forced DOWN (both directions) for 22.0 s; vehicle and simulation keep running,"{""fault"": ""ugv_link""}"
+44.00,FAULT_DETECTED,UGV-1,T5,"telemetry stale: last message 2.10 s old > timeout 2.0 s -> UGV-1 marked UNAVAILABLE; last known position (3.2,8.4) is NOT treated as current","{""telemetry_age_s"": 2.1, ""last_stamp"": 41.9}"
+44.00,TASK_INTERRUPTED,UGV-1,T5,Casualty check: person #1 reported by UAV: ACTIVE -> PENDING (progress kept 17%); stop issuing work to UGV-1,
+44.00,TASK_UNQUEUED,UGV-1,T3,Visual check: north-east perimeter gate: ASSIGNED -> PENDING (progress kept 0%); stop issuing work to UGV-1,
+44.00,TASK_REASSIGNED,UAV-1,T3,"Visual check: north-east perimeter gate -> UAV-1 (utility -0.09, ETA 102 s, energy 9.2%) | UAV-1=-0.09; UGV-1 infeasible (link STALE (no fresh telemetry))","{""terms"": {""priority"": 0.55, ""eta"": -0.8534, ""energy"": -0.117, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": -0.175}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": true, ""utility"": -0.0854, ""terms"": {""priority"": 0.55, ""eta"": -0.8534, ""energy"": -0.117, ""localisation"": 0.36, ""reliability"": 0.15, ""preference"": -0.175}, ""reason"": """", ""eta_s"": 102.4, ""energy_pct"": 9.22}, {""agent"": ""UGV-1"", ""feasible"": false, ""utility"": null, ""terms"": {}, ""reason"": ""link STALE (no fresh telemetry)""}]}"
+44.00,TASK_PENDING,,T5,Casualty check: person #1 reported by UAV: no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: link STALE (no fresh telemetry),
+44.00,TASK_DISPATCHED,UAV-1,T3,"ASSIGN sent; goal in UAV-1 frame: (6.3,19.0), (8.2,21.2)",
+44.20,TASK_ACK,UAV-1,T3,accepted (1 waypoint(s) inserted before the return leg),
+44.20,SCREENSHOT,,,saved screenshots/05_reassignment.png,
+44.60,TASK_ACTIVE,UAV-1,T3,UAV-1 reports ACCEPTED,
+46.20,SCREENSHOT,,,saved screenshots/04_fault_detected.png,
+50.00,LINK_LOST,UGV-1,,no telemetry for 8.1 s (> 8.0 s),
+50.00,TASK_PENDING,,T5,Casualty check: person #1 reported by UAV: no feasible agent -> stays PENDING: UAV-1: capability: GROUND_INSPECT requires ugv; UGV-1: link LOST (no fresh telemetry),
+64.10,FAULT_CLEARED,UGV-1,,[experiment harness] ugv_link: radio link of UGV-1 restored,
+64.80,AGENT_MODE,UGV-1,T5,EN_ROUTE -> TASK_HELD,
+66.00,LINK_RECOVERED,UGV-1,,"3 consecutive fresh telemetry messages; vehicle reports mode TASK_HELD, task T5 (HELD) -> agent AVAILABLE again",
+66.00,TASK_REASSIGNED,UGV-1,T5,"Casualty check: person #1 reported by UAV -> UGV-1 (utility 1.31, ETA 26 s, energy 0.5%) | UAV-1 infeasible (capability: GROUND_INSPECT requires ugv); UGV-1=1.31","{""terms"": {""priority"": 0.95, ""eta"": -0.2152, ""energy"": -0.0049, ""localisation"": 0.38, ""reliability"": 0.2, ""preference"": 0.0}, ""candidates"": [{""agent"": ""UAV-1"", ""feasible"": false, ""utility"": null, ""terms"": {}, ""reason"": ""capability: GROUND_INSPECT requires ugv""}, {""agent"": ""UGV-1"", ""feasible"": true, ""utility"": 1.3099, ""terms"": {""priority"": 0.95, ""eta"": -0.2152, ""energy"": -0.0049, ""localisation"": 0.38, ""reliability"": 0.2, ""preference"": 0.0}, ""reason"": """", ""eta_s"": 25.8, ""energy_pct"": 0.52}]}"
+66.00,TASK_DISPATCHED,UGV-1,T5,"RESUME sent; goal in UGV-1 frame: (-1.5,16.6), (-1.7,18.2)",
+66.10,TASK_COMPLETED,UAV-1,T1,Aerial survey of site completed in 66.1 s since creation,
+66.10,NEXT_TASK_DECISION,UAV-1,T4,recommended next for UAV-1: T4; candidates [none],"{""ranked"": [], ""queued"": [""T4"", ""T3""]}"
+66.20,TASK_ACK,UGV-1,T5,accepted (resumed from HELD),
+66.60,AGENT_MODE,UGV-1,T5,TASK_HELD -> EN_ROUTE,
+66.60,TASK_ACTIVE,UGV-1,T5,UGV-1 reports EN_ROUTE,
+70.20,SCREENSHOT,,,saved screenshots/06_recovered.png,
+78.60,AGENT_MODE,UGV-1,T5,EN_ROUTE -> INSPECTING,
+82.40,INSPECTION_RESULT,UGV-1,T5,"UGV ground view: object NOT confirmed at 8.93 m (expected 2.02 m), evidence T5_t082.png",
+82.80,AGENT_MODE,UGV-1,T5,INSPECTING -> IDLE,
+82.80,TASK_COMPLETED,UGV-1,T5,Casualty check: person #1 reported by UAV completed in 60.3 s since creation,
+82.80,NEXT_TASK_DECISION,UGV-1,,recommended next for UGV-1: none (idle / hold); candidates [none],"{""ranked"": [], ""queued"": []}"
+87.70,INSPECTION_RESULT,UAV-1,T4,"UAV aerial visual check at 3.1 m from the target, altitude 2.0 m, image T4_check_t087.png",
+88.10,TASK_COMPLETED,UAV-1,T4,Thermal/visual check: north-west bay cable drum completed in 88.1 s since creation,
+88.10,NEXT_TASK_DECISION,UAV-1,T3,recommended next for UAV-1: T3; candidates [none],"{""ranked"": [], ""queued"": [""T3""]}"
+113.90,INSPECTION_RESULT,UAV-1,T3,"UAV aerial visual check at 3.2 m from the target, altitude 2.0 m, image T3_check_t113.png",
+114.10,AGENT_MODE,UAV-1,T3,SEARCH -> RETURN,
+114.10,TASK_COMPLETED,UAV-1,T3,Visual check: north-east perimeter gate completed in 114.1 s since creation,
+114.10,NEXT_TASK_DECISION,UAV-1,,recommended next for UAV-1: none (idle / hold); candidates [none],"{""ranked"": [], ""queued"": []}"
+157.60,AGENT_MODE,UAV-1,T3,RETURN -> HOLD_END,
+163.60,AGENT_MODE,UAV-1,T3,HOLD_END -> LANDING,
+172.00,EXPERIMENT_END,,,all tasks terminal and UAV landed,
+172.00,SCREENSHOT,,,saved screenshots/07_final.png,

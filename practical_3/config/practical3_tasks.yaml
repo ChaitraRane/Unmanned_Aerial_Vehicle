@@ -1,0 +1,67 @@
+mission_frame:
+  frame_id: mission_enu
+  origin: base_station
+  world_from_mission_xy: [-15.0, -10.0]   # simulator placement of the base station (evaluation / rendering only)
+
+area:
+  x_m: [-5.0, 35.0]
+  y_m: [-5.0, 25.0]
+
+agents:
+  UAV:
+    capabilities: [aerial_survey, elevated_inspection, rgbd_camera, wide_area_mapping]
+    pad_mission_xyz: [3.0, 2.0, 0.0]        # surveyed take-off pad -> UAV local NED registration
+    survey_altitude_m: 5.0
+    survey_speed_mps: 2.2
+    survey_lanes_y: [0.0, 10.0, 20.0]
+    survey_x_range: [2.0, 33.0]
+    inspect_standoff_m: 5.0
+    inspect_hold_s: 6.0
+  UGV:
+    capabilities: [ground_inspection, close_range_camera, env_sensor, local_mapping]
+    dock_mission_xy: [3.0, -2.5]
+    dock_heading_deg: 30.0                  # UGV odom frame: origin at dock, x = initial heading
+    max_speed_mps: 0.7
+    inspect_standoff_m: 1.6
+    inspect_hold_s: 4.0
+
+targets:
+  P1: {name: Elevated structure,      marker: orange,  world_truth_mission: [22.0, 16.0, 5.0]}
+  P2: {name: Ground equipment,        marker: yellow,  world_truth_mission: [14.0, 5.0, 0.9]}
+  P3: {name: Environmental monitoring, marker: cyan,   world_truth_mission: [9.0, 13.0, 1.0]}
+  P4: {name: Unexplored ground region, marker: magenta, world_truth_mission: [32.0, 4.0, 0.3]}
+
+tasks:
+  - {task_id: T1, target: AREA, action: aerial_survey,            requires: aerial_survey,       priority: 0}
+  - {task_id: T2, target: P1,   action: elevated_inspection,      requires: elevated_inspection, priority: 1}
+  - {task_id: T3, target: P2,   action: close_up_inspection,      requires: ground_inspection,   priority: 1}
+  - {task_id: T4, target: P3,   action: environmental_sampling,   requires: env_sensor,          priority: 2}
+  - {task_id: T5, target: P4,   action: unexplored_region_inspection, requires: ground_inspection, priority: 3}
+  - {task_id: T6, target: ALL,  action: final_verification,       requires: joint,               priority: 9}
+
+classification:
+  elevated_min_z_m: 2.0
+  marker_task:                # marker colour -> ground-task type requested by the coordinator
+    yellow: close_up_inspection
+    cyan: environmental_sampling
+    magenta: unexplored_region_inspection
+    orange: elevated_inspection
+
+handover:
+  require_ack: true
+  max_target_sigma_m: 1.5
+  min_observations: 3
+
+comms:
+  latency_s: 0.10
+  heartbeat_period_s: 1.0
+  timeout_s: 3.0
+  fault_injection:            # Condition D demonstration
+    agent: UGV
+    during_task: T4
+    start_after_accept_s: 6.0
+    duration_s: 7.0
+
+recording:
+  frame_period_s: 0.25
+  video_fps: 8

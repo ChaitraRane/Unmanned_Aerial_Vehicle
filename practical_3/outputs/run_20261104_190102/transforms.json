@@ -1,0 +1,278 @@
+{
+ "transforms": [
+  {
+   "parent": "mission_enu",
+   "child": "uav_local_ned",
+   "t": [
+    15.01,
+    10.01,
+    -0.136
+   ],
+   "yaw_deg": 90.0,
+   "R": [
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0
+    ]
+   ],
+   "source": "surveyed take-off pad + FC LOCAL_POSITION_NED at arming"
+  },
+  {
+   "parent": "mission_enu",
+   "child": "ugv_odom",
+   "t": [
+    3.0,
+    -2.5,
+    0.0
+   ],
+   "yaw_deg": 30.0,
+   "R": [
+    [
+     0.866,
+     -0.5,
+     0.0
+    ],
+    [
+     0.5,
+     0.866,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "source": "surveyed UGV dock pose"
+  }
+ ],
+ "handovers": [
+  {
+   "task_id": "T3",
+   "t": 75.10000000000001,
+   "target": "yellow",
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -5.039,
+    -1.369,
+    -1.229
+   ],
+   "mission_xyz": [
+    13.64,
+    4.97,
+    1.09
+   ],
+   "ugv_frame": "ugv_odom",
+   "ugv_xyz": [
+    12.95,
+    1.149,
+    1.09
+   ],
+   "ack_t": 75.3,
+   "ack": {
+    "seq": 385,
+    "msg_type": "TASK_ACK",
+    "src": "UGV",
+    "dst": "BASE",
+    "stamp": 75.2,
+    "wall_time": "2026-11-04T19:02:39",
+    "task_id": "T3",
+    "agent_id": "UGV",
+    "status": "ACCEPTED",
+    "goal_frame": "ugv_odom",
+    "goal_xyz": [
+     11.356,
+     1.008,
+     0.0
+    ],
+    "target_frame_check_m": 0.001,
+    "note": "coordinates valid, A* path 3 pts"
+   }
+  },
+  {
+   "task_id": "T4",
+   "t": 96.60000000000001,
+   "target": "cyan",
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    2.916,
+    -5.864,
+    -1.121
+   ],
+   "mission_xyz": [
+    9.15,
+    12.93,
+    0.98
+   ],
+   "ugv_frame": "ugv_odom",
+   "ugv_xyz": [
+    13.041,
+    10.288,
+    0.98
+   ],
+   "ack_t": 96.8,
+   "ack": {
+    "seq": 492,
+    "msg_type": "TASK_ACK",
+    "src": "UGV",
+    "dst": "BASE",
+    "stamp": 96.7,
+    "wall_time": "2026-11-04T19:03:22",
+    "task_id": "T4",
+    "agent_id": "UGV",
+    "status": "ACCEPTED",
+    "goal_frame": "ugv_odom",
+    "goal_xyz": [
+     12.697,
+     8.725,
+     0.0
+    ],
+    "target_frame_check_m": 0.0,
+    "note": "coordinates valid, A* path 2 pts"
+   }
+  },
+  {
+   "task_id": "T5",
+   "t": 120.7,
+   "target": "magenta",
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -6.049,
+    16.94,
+    -0.216
+   ],
+   "mission_xyz": [
+    31.95,
+    3.96,
+    0.08
+   ],
+   "ugv_frame": "ugv_odom",
+   "ugv_xyz": [
+    28.301,
+    -8.88,
+    0.08
+   ],
+   "ack_t": 120.9,
+   "ack": {
+    "seq": 604,
+    "msg_type": "TASK_ACK",
+    "src": "UGV",
+    "dst": "BASE",
+    "stamp": 120.8,
+    "wall_time": "2026-11-04T19:04:15",
+    "task_id": "T5",
+    "agent_id": "UGV",
+    "status": "ACCEPTED",
+    "goal_frame": "ugv_odom",
+    "goal_xyz": [
+     27.229,
+     -7.692,
+     0.0
+    ],
+    "target_frame_check_m": 0.001,
+    "note": "coordinates valid, A* path 3 pts"
+   }
+  }
+ ],
+ "targets": {
+  "P2": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -5.039,
+    -1.369,
+    -1.229
+   ],
+   "mission_xyz": [
+    13.641,
+    4.971,
+    1.093
+   ],
+   "truth_mission_xyz": [
+    14.0,
+    5.0,
+    0.9
+   ],
+   "horizontal_error_m": 0.36,
+   "category": "GROUND",
+   "agent": "UGV",
+   "task": "T3"
+  },
+  "P4": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -6.049,
+    16.94,
+    -0.216
+   ],
+   "mission_xyz": [
+    31.95,
+    3.961,
+    0.08
+   ],
+   "truth_mission_xyz": [
+    32.0,
+    4.0,
+    0.3
+   ],
+   "horizontal_error_m": 0.064,
+   "category": "GROUND",
+   "agent": "UGV",
+   "task": "T5"
+  },
+  "P1": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    5.954,
+    7.968,
+    -5.095
+   ],
+   "mission_xyz": [
+    22.978,
+    15.964,
+    4.959
+   ],
+   "truth_mission_xyz": [
+    22.0,
+    16.0,
+    5.0
+   ],
+   "horizontal_error_m": 0.978,
+   "category": "AERIAL/ELEVATED",
+   "agent": "UAV",
+   "task": "T2"
+  },
+  "P3": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    2.916,
+    -5.864,
+    -1.121
+   ],
+   "mission_xyz": [
+    9.146,
+    12.926,
+    0.985
+   ],
+   "truth_mission_xyz": [
+    9.0,
+    13.0,
+    1.0
+   ],
+   "horizontal_error_m": 0.163,
+   "category": "GROUND",
+   "agent": "UGV",
+   "task": "T4"
+  }
+ }
+}

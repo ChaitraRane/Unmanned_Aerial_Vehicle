@@ -1,0 +1,87 @@
+{
+ "uav_log": "logs\\demo\\windows_dynamic",
+ "rows": {
+  "fc_telemetry": 31539,
+  "gps": 2262,
+  "slam_pose": 1117,
+  "ground_truth": 11350
+ },
+ "gps_origin": [
+  29.99997062,
+  75.99999996,
+  249.94899999999998
+ ],
+ "mission_s": 226.97,
+ "wall_s": 1060.7519998550415,
+ "rtf": 0.21352776146634903,
+ "slam_states": {
+  "OK": 1117
+ },
+ "slam_err_final_m": 10.144343023619527,
+ "slam_err_max_m": 10.269524672724565,
+ "slam_err_rms_m": 3.925841768669765,
+ "gps_err_rms_m": 0.9823833624039063,
+ "gps_err_max_m": 1.9124358662372427,
+ "gps_minus_slam_final_m": 10.510189548617642,
+ "first_time_gps_slam_gt_3m": 120.0,
+ "fc_dt_median_s": 0.0,
+ "fc_duplicate_timestamps": 25321,
+ "fc_gaps_gt_0p5s": [],
+ "fc_wall_dt_median_s": 0.031999826431274414,
+ "gps_dt_median_s": 0.09999999999999432,
+ "gps_dt_max_s": 0.10000000000002274,
+ "battery_v": [
+  24.93,
+  24.432
+ ],
+ "battery_pct_levels": [
+  86.0,
+  87.0,
+  88.0,
+  89.0,
+  90.0,
+  91.0,
+  92.0,
+  93.0,
+  94.0,
+  95.0
+ ],
+ "landing_truth_en": [
+  -8.961691818,
+  3.84603
+ ],
+ "landing_slam_en": [
+  0.3375,
+  -0.2077
+ ],
+ "landing_gps_en": [
+  -8.952218026474602,
+  4.639796376540427
+ ],
+ "modes": [
+  "HOLD",
+  "LAND",
+  "OFFBOARD"
+ ],
+ "nav_lost_ticks": 97,
+ "link_lost_ticks": 21,
+ "practical3": {
+  "status_msgs": {
+   "UAV": 207,
+   "UGV": 200
+  },
+  "dropped": 17,
+  "ugv_gap_s": 8.0,
+  "ugv_gap_from_s": 102.06,
+  "ugv_drift_max_m": 0.8998360961864112,
+  "ugv_drift_final_m": 0.8979916480680651,
+  "ugv_consecutive_equal_wall_time": 6,
+  "uav_battery_levels": [
+   91,
+   92,
+   93,
+   94,
+   95
+  ]
+ }
+}

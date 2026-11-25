@@ -1,0 +1,1064 @@
+{
+ "mission_complete": true,
+ "sim_time_s": 206.7,
+ "wall_time_s": 293.7,
+ "frame_id": "mission_enu",
+ "transforms": [
+  {
+   "parent": "mission_enu",
+   "child": "uav_local_ned",
+   "t": [
+    15.01,
+    10.01,
+    -0.136
+   ],
+   "yaw_deg": 90.0,
+   "R": [
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0
+    ]
+   ],
+   "source": "surveyed take-off pad + FC LOCAL_POSITION_NED at arming"
+  },
+  {
+   "parent": "mission_enu",
+   "child": "ugv_odom",
+   "t": [
+    3.0,
+    -2.5,
+    0.0
+   ],
+   "yaw_deg": 30.0,
+   "R": [
+    [
+     0.866,
+     -0.5,
+     0.0
+    ],
+    [
+     0.5,
+     0.866,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "source": "surveyed UGV dock pose"
+  }
+ ],
+ "tasks": {
+  "T1": {
+   "agent": "UAV",
+   "status": "COMPLETED",
+   "target": "AREA",
+   "action": "aerial_survey",
+   "target_mission": null,
+   "results": {
+    "images": [
+     "images/uav_detect_orange.png",
+     "images/uav_detect_yellow.png",
+     "images/uav_detect_cyan.png",
+     "images/uav_detect_magenta.png"
+    ],
+    "inspection_performed": true,
+    "sensor_data": {
+     "rois_reported": [
+      "orange",
+      "yellow",
+      "cyan",
+      "magenta"
+     ],
+     "lanes_flown": 3,
+     "observations": {
+      "orange": 31,
+      "yellow": 22,
+      "cyan": 16,
+      "magenta": 11
+     }
+    }
+   },
+   "history": [
+    {
+     "t": 0.2,
+     "from": "PENDING",
+     "to": "ASSIGNED",
+     "why": "to UAV"
+    },
+    {
+     "t": 0.5,
+     "from": "ASSIGNED",
+     "to": "ACCEPTED",
+     "why": "UAV accepted"
+    },
+    {
+     "t": 3.2,
+     "from": "ACCEPTED",
+     "to": "IN_PROGRESS",
+     "why": ""
+    },
+    {
+     "t": 61.2,
+     "from": "IN_PROGRESS",
+     "to": "COMPLETED",
+     "why": "valid completion message"
+    }
+   ]
+  },
+  "T2": {
+   "agent": "UAV",
+   "status": "COMPLETED",
+   "target": "P1",
+   "action": "elevated_inspection",
+   "target_mission": [
+    22.98,
+    15.96,
+    4.96
+   ],
+   "results": {
+    "images": [
+     "images\\uav_T2_inspection_0.png",
+     "images\\uav_T2_inspection_1.png"
+    ],
+    "inspection_performed": true,
+    "sensor_data": {
+     "marker_frames_seen": 20,
+     "mean_marker_fraction": 0.094,
+     "mean_range_m": 3.508,
+     "refined_target_mission": [
+      21.779,
+      15.574,
+      4.915
+     ]
+    },
+    "mapping_update": {
+     "orange_observations": 52
+    }
+   },
+   "history": [
+    {
+     "t": 61.2,
+     "from": "PENDING",
+     "to": "ASSIGNED",
+     "why": "to UAV"
+    },
+    {
+     "t": 61.5,
+     "from": "ASSIGNED",
+     "to": "ACCEPTED",
+     "why": "UAV accepted"
+    },
+    {
+     "t": 62.4,
+     "from": "ACCEPTED",
+     "to": "IN_PROGRESS",
+     "why": ""
+    },
+    {
+     "t": 75.0,
+     "from": "IN_PROGRESS",
+     "to": "COMPLETED",
+     "why": "valid completion message"
+    }
+   ]
+  },
+  "T3": {
+   "agent": "UGV",
+   "status": "COMPLETED",
+   "target": "P2",
+   "action": "close_up_inspection",
+   "target_mission": [
+    13.64,
+    4.97,
+    1.09
+   ],
+   "results": {
+    "images": [
+     "images\\ugv_T3_0.png",
+     "images\\ugv_T3_1.png"
+    ],
+    "sensor_data": {
+     "ugv_observed_target_odom": [
+      12.7,
+      1.049
+     ],
+     "ugv_observed_target_mission": [
+      13.474,
+      4.758
+     ],
+     "uav_reported_target_mission": [
+      13.64,
+      4.97
+     ],
+     "cross_platform_residual_m": 0.269,
+     "marker_frames_seen": 8
+    },
+    "inspection_performed": true,
+    "duration_s": 21.3
+   },
+   "history": [
+    {
+     "t": 75.1,
+     "from": "PENDING",
+     "to": "ASSIGNED",
+     "why": "to UGV"
+    },
+    {
+     "t": 75.3,
+     "from": "ASSIGNED",
+     "to": "ACCEPTED",
+     "why": "coordinates valid, A* path 3 pts"
+    },
+    {
+     "t": 76.2,
+     "from": "ACCEPTED",
+     "to": "IN_PROGRESS",
+     "why": ""
+    },
+    {
+     "t": 96.6,
+     "from": "IN_PROGRESS",
+     "to": "COMPLETED",
+     "why": "valid completion message"
+    }
+   ]
+  },
+  "T4": {
+   "agent": "UGV",
+   "status": "COMPLETED",
+   "target": "P3",
+   "action": "environmental_sampling",
+   "target_mission": [
+    9.15,
+    12.93,
+    0.98
+   ],
+   "results": {
+    "images": [
+     "images\\ugv_T4_0.png",
+     "images\\ugv_T4_1.png"
+    ],
+    "sensor_data": {
+     "ugv_observed_target_odom": [
+      12.925,
+      10.109
+     ],
+     "ugv_observed_target_mission": [
+      9.139,
+      12.717
+     ],
+     "uav_reported_target_mission": [
+      9.15,
+      12.93
+     ],
+     "cross_platform_residual_m": 0.213,
+     "environment_SIMULATED_SENSOR": {
+      "temperature_c": 28.3,
+      "humidity_pct": 43.01,
+      "co2_ppm": 565.34
+     },
+     "environment_samples": 8,
+     "marker_frames_seen": 8
+    },
+    "inspection_performed": true,
+    "duration_s": 23.8
+   },
+   "history": [
+    {
+     "t": 96.6,
+     "from": "PENDING",
+     "to": "ASSIGNED",
+     "why": "to UGV"
+    },
+    {
+     "t": 96.8,
+     "from": "ASSIGNED",
+     "to": "ACCEPTED",
+     "why": "coordinates valid, A* path 2 pts"
+    },
+    {
+     "t": 97.2,
+     "from": "ACCEPTED",
+     "to": "IN_PROGRESS",
+     "why": ""
+    },
+    {
+     "t": 105.25,
+     "from": "IN_PROGRESS",
+     "to": "HOLD",
+     "why": "Condition D: agent unavailable"
+    },
+    {
+     "t": 110.2,
+     "from": "HOLD",
+     "to": "IN_PROGRESS",
+     "why": "link restored, task resumed by same agent"
+    },
+    {
+     "t": 120.7,
+     "from": "IN_PROGRESS",
+     "to": "COMPLETED",
+     "why": "valid completion message"
+    }
+   ]
+  },
+  "T5": {
+   "agent": "UGV",
+   "status": "COMPLETED",
+   "target": "P4",
+   "action": "unexplored_region_inspection",
+   "target_mission": [
+    31.95,
+    3.96,
+    0.08
+   ],
+   "results": {
+    "images": [
+     "images\\ugv_T5_0.png",
+     "images\\ugv_T5_1.png"
+    ],
+    "sensor_data": {
+     "ugv_observed_target_odom": [
+      28.698,
+      -8.211
+     ],
+     "ugv_observed_target_mission": [
+      31.959,
+      4.738
+     ],
+     "uav_reported_target_mission": [
+      31.95,
+      3.96
+     ],
+     "cross_platform_residual_m": 0.778,
+     "local_map_cells_added": 1132,
+     "scan_deg": 360,
+     "marker_frames_seen": 8
+    },
+    "inspection_performed": true,
+    "duration_s": 81.6
+   },
+   "history": [
+    {
+     "t": 120.7,
+     "from": "PENDING",
+     "to": "ASSIGNED",
+     "why": "to UGV"
+    },
+    {
+     "t": 120.9,
+     "from": "ASSIGNED",
+     "to": "ACCEPTED",
+     "why": "coordinates valid, A* path 3 pts"
+    },
+    {
+     "t": 121.2,
+     "from": "ACCEPTED",
+     "to": "IN_PROGRESS",
+     "why": ""
+    },
+    {
+     "t": 202.5,
+     "from": "IN_PROGRESS",
+     "to": "COMPLETED",
+     "why": "valid completion message"
+    }
+   ]
+  },
+  "T6": {
+   "agent": "UAV+UGV",
+   "status": "COMPLETED",
+   "target": "ALL",
+   "action": "final_verification",
+   "target_mission": null,
+   "results": {
+    "inspection_performed": true,
+    "replies": [
+     "UGV",
+     "UAV"
+    ]
+   },
+   "history": [
+    {
+     "t": 202.5,
+     "from": "PENDING",
+     "to": "ASSIGNED",
+     "why": "joint verification"
+    },
+    {
+     "t": 202.5,
+     "from": "ASSIGNED",
+     "to": "IN_PROGRESS",
+     "why": ""
+    },
+    {
+     "t": 202.7,
+     "from": "IN_PROGRESS",
+     "to": "COMPLETED",
+     "why": "all inspections verified"
+    }
+   ]
+  }
+ },
+ "handovers": [
+  {
+   "task_id": "T3",
+   "t": 75.10000000000001,
+   "target": "yellow",
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -5.039,
+    -1.369,
+    -1.229
+   ],
+   "mission_xyz": [
+    13.64,
+    4.97,
+    1.09
+   ],
+   "ugv_frame": "ugv_odom",
+   "ugv_xyz": [
+    12.95,
+    1.149,
+    1.09
+   ],
+   "ack_t": 75.3,
+   "ack": {
+    "seq": 385,
+    "msg_type": "TASK_ACK",
+    "src": "UGV",
+    "dst": "BASE",
+    "stamp": 75.2,
+    "wall_time": "2026-11-04T19:02:39",
+    "task_id": "T3",
+    "agent_id": "UGV",
+    "status": "ACCEPTED",
+    "goal_frame": "ugv_odom",
+    "goal_xyz": [
+     11.356,
+     1.008,
+     0.0
+    ],
+    "target_frame_check_m": 0.001,
+    "note": "coordinates valid, A* path 3 pts"
+   }
+  },
+  {
+   "task_id": "T4",
+   "t": 96.60000000000001,
+   "target": "cyan",
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    2.916,
+    -5.864,
+    -1.121
+   ],
+   "mission_xyz": [
+    9.15,
+    12.93,
+    0.98
+   ],
+   "ugv_frame": "ugv_odom",
+   "ugv_xyz": [
+    13.041,
+    10.288,
+    0.98
+   ],
+   "ack_t": 96.8,
+   "ack": {
+    "seq": 492,
+    "msg_type": "TASK_ACK",
+    "src": "UGV",
+    "dst": "BASE",
+    "stamp": 96.7,
+    "wall_time": "2026-11-04T19:03:22",
+    "task_id": "T4",
+    "agent_id": "UGV",
+    "status": "ACCEPTED",
+    "goal_frame": "ugv_odom",
+    "goal_xyz": [
+     12.697,
+     8.725,
+     0.0
+    ],
+    "target_frame_check_m": 0.0,
+    "note": "coordinates valid, A* path 2 pts"
+   }
+  },
+  {
+   "task_id": "T5",
+   "t": 120.7,
+   "target": "magenta",
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -6.049,
+    16.94,
+    -0.216
+   ],
+   "mission_xyz": [
+    31.95,
+    3.96,
+    0.08
+   ],
+   "ugv_frame": "ugv_odom",
+   "ugv_xyz": [
+    28.301,
+    -8.88,
+    0.08
+   ],
+   "ack_t": 120.9,
+   "ack": {
+    "seq": 604,
+    "msg_type": "TASK_ACK",
+    "src": "UGV",
+    "dst": "BASE",
+    "stamp": 120.8,
+    "wall_time": "2026-11-04T19:04:15",
+    "task_id": "T5",
+    "agent_id": "UGV",
+    "status": "ACCEPTED",
+    "goal_frame": "ugv_odom",
+    "goal_xyz": [
+     27.229,
+     -7.692,
+     0.0
+    ],
+    "target_frame_check_m": 0.001,
+    "note": "coordinates valid, A* path 3 pts"
+   }
+  }
+ ],
+ "targets_evaluation_only": {
+  "P2": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -5.039,
+    -1.369,
+    -1.229
+   ],
+   "mission_xyz": [
+    13.641,
+    4.971,
+    1.093
+   ],
+   "truth_mission_xyz": [
+    14.0,
+    5.0,
+    0.9
+   ],
+   "horizontal_error_m": 0.36,
+   "category": "GROUND",
+   "agent": "UGV",
+   "task": "T3"
+  },
+  "P4": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    -6.049,
+    16.94,
+    -0.216
+   ],
+   "mission_xyz": [
+    31.95,
+    3.961,
+    0.08
+   ],
+   "truth_mission_xyz": [
+    32.0,
+    4.0,
+    0.3
+   ],
+   "horizontal_error_m": 0.064,
+   "category": "GROUND",
+   "agent": "UGV",
+   "task": "T5"
+  },
+  "P1": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    5.954,
+    7.968,
+    -5.095
+   ],
+   "mission_xyz": [
+    22.978,
+    15.964,
+    4.959
+   ],
+   "truth_mission_xyz": [
+    22.0,
+    16.0,
+    5.0
+   ],
+   "horizontal_error_m": 0.978,
+   "category": "AERIAL/ELEVATED",
+   "agent": "UAV",
+   "task": "T2"
+  },
+  "P3": {
+   "uav_frame": "uav_local_ned",
+   "uav_xyz": [
+    2.916,
+    -5.864,
+    -1.121
+   ],
+   "mission_xyz": [
+    9.146,
+    12.926,
+    0.985
+   ],
+   "truth_mission_xyz": [
+    9.0,
+    13.0,
+    1.0
+   ],
+   "horizontal_error_m": 0.163,
+   "category": "GROUND",
+   "agent": "UGV",
+   "task": "T4"
+  }
+ },
+ "ugv_wheel_slip_events": 0,
+ "ugv_odometry_error_evaluation_only": {
+  "final_m": 0.898,
+  "max_m": 0.899
+ },
+ "messages_sent": 993,
+ "messages_dropped_link_down": 17,
+ "mavlink_rx": {
+  "HEARTBEAT": 285,
+  "SET_POSITION_TARGET_LOCAL_NED": 1065,
+  "COMMAND_LONG": 13
+ },
+ "mavlink_tx": {
+  "HEARTBEAT": 414,
+  "LOCAL_POSITION_NED": 6202,
+  "ATTITUDE": 10336,
+  "GLOBAL_POSITION_INT": 2068,
+  "SYS_STATUS": 414,
+  "HIGHRES_IMU": 20670,
+  "RAW_RPM": 8272,
+  "ACTUATOR_OUTPUT_STATUS": 2068,
+  "GPS_RAW_INT": 2067,
+  "COMMAND_ACK": 13,
+  "STATUSTEXT": 9
+ },
+ "final_agent_status": {
+  "UGV": {
+   "agent_id": "UGV",
+   "pose": [
+    30.082,
+    4.473,
+    0.0
+   ],
+   "frame_id": "mission_enu",
+   "battery_pct": 97.9,
+   "health": "OK",
+   "localisation": "VALID",
+   "current_task": null,
+   "comm": "OK",
+   "link": "OK"
+  },
+  "UAV": {
+   "agent_id": "UAV",
+   "pose": [
+    3.066,
+    2.007,
+    0.01
+   ],
+   "frame_id": "mission_enu",
+   "battery_pct": 91,
+   "health": "OK",
+   "localisation": "VALID",
+   "current_task": null,
+   "comm": "OK",
+   "link": "OK"
+  }
+ },
+ "events": [
+  {
+   "t": 0.2,
+   "kind": "REGISTER",
+   "text": "UGV registered: pose [3.0, -2.5, 0.0] [mission_enu], battery 100.0%, health OK, localisation VALID"
+  },
+  {
+   "t": 0.2,
+   "kind": "REGISTER",
+   "text": "UAV registered: pose [3.0, 2.0, 0.0] [mission_enu], battery 95%, health OK, localisation VALID"
+  },
+  {
+   "t": 0.2,
+   "kind": "CHECK",
+   "text": "availability UAV=True (ok), UGV=True (ok)"
+  },
+  {
+   "t": 0.2,
+   "kind": "TASK",
+   "text": "T1 PENDING -> ASSIGNED (to UAV)"
+  },
+  {
+   "t": 0.5,
+   "kind": "TASK",
+   "text": "T1 ASSIGNED -> ACCEPTED (UAV accepted)"
+  },
+  {
+   "t": 3.2,
+   "kind": "TASK",
+   "text": "T1 ACCEPTED -> IN_PROGRESS"
+  },
+  {
+   "t": 11.6,
+   "kind": "FRAME",
+   "text": "yellow: uav_local_ned [-5.04, -1.37, -1.23] -> mission_enu [13.64, 4.97, 1.09] (valid=True)"
+  },
+  {
+   "t": 11.6,
+   "kind": "CLASSIFY",
+   "text": "target yellow at mission (13.6, 5.0, 1.1) -> GROUND -> UGV task T3",
+   "target": "yellow"
+  },
+  {
+   "t": 18.6,
+   "kind": "FRAME",
+   "text": "magenta: uav_local_ned [-6.05, 16.94, -0.22] -> mission_enu [31.95, 3.96, 0.08] (valid=True)"
+  },
+  {
+   "t": 18.6,
+   "kind": "CLASSIFY",
+   "text": "target magenta at mission (31.9, 4.0, 0.1) -> GROUND -> UGV task T5",
+   "target": "magenta"
+  },
+  {
+   "t": 29.4,
+   "kind": "FRAME",
+   "text": "orange: uav_local_ned [5.95, 7.97, -5.1] -> mission_enu [22.98, 15.96, 4.96] (valid=True)"
+  },
+  {
+   "t": 29.4,
+   "kind": "CLASSIFY",
+   "text": "target orange at mission (23.0, 16.0, 5.0) -> AERIAL/ELEVATED -> UAV task T2",
+   "target": "orange"
+  },
+  {
+   "t": 34.6,
+   "kind": "FRAME",
+   "text": "cyan: uav_local_ned [2.92, -5.86, -1.12] -> mission_enu [9.15, 12.93, 0.98] (valid=True)"
+  },
+  {
+   "t": 34.6,
+   "kind": "CLASSIFY",
+   "text": "target cyan at mission (9.1, 12.9, 1.0) -> GROUND -> UGV task T4",
+   "target": "cyan"
+  },
+  {
+   "t": 61.2,
+   "kind": "TASK",
+   "text": "T1 IN_PROGRESS -> COMPLETED (valid completion message)"
+  },
+  {
+   "t": 61.2,
+   "kind": "PLAN",
+   "text": "survey complete; inspection list: T3->UGV, T5->UGV, T2->UAV, T4->UGV"
+  },
+  {
+   "t": 61.2,
+   "kind": "TASK",
+   "text": "T2 PENDING -> ASSIGNED (to UAV)"
+  },
+  {
+   "t": 61.5,
+   "kind": "TASK",
+   "text": "T2 ASSIGNED -> ACCEPTED (UAV accepted)"
+  },
+  {
+   "t": 62.4,
+   "kind": "TASK",
+   "text": "T2 ACCEPTED -> IN_PROGRESS"
+  },
+  {
+   "t": 75.0,
+   "kind": "TASK",
+   "text": "T2 IN_PROGRESS -> COMPLETED (valid completion message)"
+  },
+  {
+   "t": 75.0,
+   "kind": "PLAN",
+   "text": "Condition B: T2 COMPLETED; next pending task -> UGV ground inspection"
+  },
+  {
+   "t": 75.1,
+   "kind": "HANDOVER",
+   "text": "Condition A/C: T3 target yellow UAV[uav_local_ned] [-5.04, -1.37, -1.23] -> mission [13.64, 4.97, 1.09] -> UGV[ugv_odom] [12.95, 1.15, 1.09]",
+   "handover": {
+    "task_id": "T3",
+    "t": 75.10000000000001,
+    "target": "yellow",
+    "uav_frame": "uav_local_ned",
+    "uav_xyz": [
+     -5.039,
+     -1.369,
+     -1.229
+    ],
+    "mission_xyz": [
+     13.64,
+     4.97,
+     1.09
+    ],
+    "ugv_frame": "ugv_odom",
+    "ugv_xyz": [
+     12.95,
+     1.149,
+     1.09
+    ],
+    "ack_t": 75.3,
+    "ack": {
+     "seq": 385,
+     "msg_type": "TASK_ACK",
+     "src": "UGV",
+     "dst": "BASE",
+     "stamp": 75.2,
+     "wall_time": "2026-11-04T19:02:39",
+     "task_id": "T3",
+     "agent_id": "UGV",
+     "status": "ACCEPTED",
+     "goal_frame": "ugv_odom",
+     "goal_xyz": [
+      11.356,
+      1.008,
+      0.0
+     ],
+     "target_frame_check_m": 0.001,
+     "note": "coordinates valid, A* path 3 pts"
+    }
+   }
+  },
+  {
+   "t": 75.1,
+   "kind": "TASK",
+   "text": "T3 PENDING -> ASSIGNED (to UGV)"
+  },
+  {
+   "t": 75.3,
+   "kind": "TASK",
+   "text": "T3 ASSIGNED -> ACCEPTED (coordinates valid, A* path 3 pts)"
+  },
+  {
+   "t": 75.3,
+   "kind": "HANDOVER",
+   "text": "UGV acknowledged T3: goal in ugv_odom [11.356, 1.008, 0.0] accepted by navigation"
+  },
+  {
+   "t": 76.2,
+   "kind": "TASK",
+   "text": "T3 ACCEPTED -> IN_PROGRESS"
+  },
+  {
+   "t": 96.6,
+   "kind": "TASK",
+   "text": "T3 IN_PROGRESS -> COMPLETED (valid completion message)"
+  },
+  {
+   "t": 96.6,
+   "kind": "HANDOVER",
+   "text": "Condition A/C: T4 target cyan UAV[uav_local_ned] [2.92, -5.86, -1.12] -> mission [9.15, 12.93, 0.98] -> UGV[ugv_odom] [13.04, 10.29, 0.98]",
+   "handover": {
+    "task_id": "T4",
+    "t": 96.60000000000001,
+    "target": "cyan",
+    "uav_frame": "uav_local_ned",
+    "uav_xyz": [
+     2.916,
+     -5.864,
+     -1.121
+    ],
+    "mission_xyz": [
+     9.15,
+     12.93,
+     0.98
+    ],
+    "ugv_frame": "ugv_odom",
+    "ugv_xyz": [
+     13.041,
+     10.288,
+     0.98
+    ],
+    "ack_t": 96.8,
+    "ack": {
+     "seq": 492,
+     "msg_type": "TASK_ACK",
+     "src": "UGV",
+     "dst": "BASE",
+     "stamp": 96.7,
+     "wall_time": "2026-11-04T19:03:22",
+     "task_id": "T4",
+     "agent_id": "UGV",
+     "status": "ACCEPTED",
+     "goal_frame": "ugv_odom",
+     "goal_xyz": [
+      12.697,
+      8.725,
+      0.0
+     ],
+     "target_frame_check_m": 0.0,
+     "note": "coordinates valid, A* path 2 pts"
+    }
+   }
+  },
+  {
+   "t": 96.6,
+   "kind": "TASK",
+   "text": "T4 PENDING -> ASSIGNED (to UGV)"
+  },
+  {
+   "t": 96.8,
+   "kind": "TASK",
+   "text": "T4 ASSIGNED -> ACCEPTED (coordinates valid, A* path 2 pts)"
+  },
+  {
+   "t": 96.8,
+   "kind": "HANDOVER",
+   "text": "UGV acknowledged T4: goal in ugv_odom [12.697, 8.725, 0.0] accepted by navigation"
+  },
+  {
+   "t": 97.2,
+   "kind": "TASK",
+   "text": "T4 ACCEPTED -> IN_PROGRESS"
+  },
+  {
+   "t": 105.25,
+   "kind": "FAULT",
+   "text": "UGV communication timeout (3.0s without status)"
+  },
+  {
+   "t": 105.25,
+   "kind": "TASK",
+   "text": "T4 IN_PROGRESS -> HOLD (Condition D: agent unavailable)"
+  },
+  {
+   "t": 105.25,
+   "kind": "REASSIGN",
+   "text": "T4: alternative UAV capable=False available=True (ok) -> kept on HOLD for UGV"
+  },
+  {
+   "t": 110.2,
+   "kind": "LINK",
+   "text": "UGV link restored"
+  },
+  {
+   "t": 110.2,
+   "kind": "TASK",
+   "text": "T4 HOLD -> IN_PROGRESS (link restored, task resumed by same agent)"
+  },
+  {
+   "t": 120.7,
+   "kind": "TASK",
+   "text": "T4 IN_PROGRESS -> COMPLETED (valid completion message)"
+  },
+  {
+   "t": 120.7,
+   "kind": "HANDOVER",
+   "text": "Condition A/C: T5 target magenta UAV[uav_local_ned] [-6.05, 16.94, -0.22] -> mission [31.95, 3.96, 0.08] -> UGV[ugv_odom] [28.3, -8.88, 0.08]",
+   "handover": {
+    "task_id": "T5",
+    "t": 120.7,
+    "target": "magenta",
+    "uav_frame": "uav_local_ned",
+    "uav_xyz": [
+     -6.049,
+     16.94,
+     -0.216
+    ],
+    "mission_xyz": [
+     31.95,
+     3.96,
+     0.08
+    ],
+    "ugv_frame": "ugv_odom",
+    "ugv_xyz": [
+     28.301,
+     -8.88,
+     0.08
+    ],
+    "ack_t": 120.9,
+    "ack": {
+     "seq": 604,
+     "msg_type": "TASK_ACK",
+     "src": "UGV",
+     "dst": "BASE",
+     "stamp": 120.8,
+     "wall_time": "2026-11-04T19:04:15",
+     "task_id": "T5",
+     "agent_id": "UGV",
+     "status": "ACCEPTED",
+     "goal_frame": "ugv_odom",
+     "goal_xyz": [
+      27.229,
+      -7.692,
+      0.0
+     ],
+     "target_frame_check_m": 0.001,
+     "note": "coordinates valid, A* path 3 pts"
+    }
+   }
+  },
+  {
+   "t": 120.7,
+   "kind": "TASK",
+   "text": "T5 PENDING -> ASSIGNED (to UGV)"
+  },
+  {
+   "t": 120.9,
+   "kind": "TASK",
+   "text": "T5 ASSIGNED -> ACCEPTED (coordinates valid, A* path 3 pts)"
+  },
+  {
+   "t": 120.9,
+   "kind": "HANDOVER",
+   "text": "UGV acknowledged T5: goal in ugv_odom [27.229, -7.692, 0.0] accepted by navigation"
+  },
+  {
+   "t": 121.2,
+   "kind": "TASK",
+   "text": "T5 ACCEPTED -> IN_PROGRESS"
+  },
+  {
+   "t": 202.5,
+   "kind": "TASK",
+   "text": "T5 IN_PROGRESS -> COMPLETED (valid completion message)"
+  },
+  {
+   "t": 202.5,
+   "kind": "TASK",
+   "text": "T6 PENDING -> ASSIGNED (joint verification)"
+  },
+  {
+   "t": 202.5,
+   "kind": "TASK",
+   "text": "T6 ASSIGNED -> IN_PROGRESS"
+  },
+  {
+   "t": 202.7,
+   "kind": "TASK",
+   "text": "T6 IN_PROGRESS -> COMPLETED (all inspections verified)"
+  },
+  {
+   "t": 202.7,
+   "kind": "MISSION",
+   "text": "mission COMPLETED"
+  }
+ ]
+}
